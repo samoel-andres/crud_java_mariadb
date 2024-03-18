@@ -1,13 +1,13 @@
 package models;
 
 public class SaleModel {
-    protected int userKey;
-    protected int customerKey;
-    protected int couponKey;
-    protected int productKey;
-    protected int cantItems;
-    protected double subtotal;
-    protected String flag;
+    private int userKey;
+    private int customerKey;
+    private int couponKey;
+    private int productKey;
+    private int cantItems;
+    private double subtotal;
+    private String flag;
 
     public SaleModel(int userKey, int customerKey, int couponKey, int productKey, int cantItems, double subtotal,
             String flag) {

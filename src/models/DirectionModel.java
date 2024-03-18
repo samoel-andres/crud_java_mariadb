@@ -1,11 +1,11 @@
 package models;
 
 public class DirectionModel {
-    protected String street;
-    protected int extNum;
-    protected int intNum;
-    protected String delegation;
-    protected String country;
+    private String street;
+    private int extNum;
+    private int intNum;
+    private String delegation;
+    private String country;
 
     public DirectionModel(String street, int extNum, int intNum, String delegation, String country) {
         this.street = street;

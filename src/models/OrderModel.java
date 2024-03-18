@@ -1,16 +1,16 @@
 package models;
 
 public class OrderModel {
-    protected int userKey;
-    protected int customerKey;
-    protected int couponKey;
-    protected int productKey;
-    protected int cantItems;
-    protected double onAccount;
-    protected double subtotal;
-    protected String status;
-    protected String comments;
-    protected String flag;
+    private int userKey;
+    private int customerKey;
+    private int couponKey;
+    private int productKey;
+    private int cantItems;
+    private double onAccount;
+    private double subtotal;
+    private String status;
+    private String comments;
+    private String flag;
 
     public OrderModel(int userKey, int customerKey, int couponKey, int productKey, int cantItems, double onAccount,
             double subtotal, String status, String comments, String flag) {

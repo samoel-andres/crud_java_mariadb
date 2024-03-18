@@ -1,12 +1,12 @@
 package models;
 
 public class CouponModel {
-    protected double minPurchase;
-    protected double maxPurchase;
-    protected String expires;
-    protected String status;
-    protected String couponType;
-    protected double award;
+    private double minPurchase;
+    private double maxPurchase;
+    private String expires;
+    private String status;
+    private String couponType;
+    private double award;
 
     public CouponModel(double minPurchase, double maxPurchase, String expires, String status, String couponType,
             double award) {

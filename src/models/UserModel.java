@@ -1,12 +1,12 @@
 package models;
 
 public class UserModel {
-    protected String name;
-    protected String lastname;
-    protected String dni;
-    protected String curp;
-    protected int customerKey;
-    protected int directionLey;
+    private String name;
+    private String lastname;
+    private String dni;
+    private String curp;
+    private int customerKey;
+    private int directionLey;
 
     public UserModel(String name, String lastname, String dni, String curp, int customerKey, int directionLey) {
         this.name = name;

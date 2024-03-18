@@ -1,10 +1,10 @@
 package models;
 
 public class ProviderModel {
-    protected String companyName;
-    protected String person;
-    protected int contactKey;
-    protected int directionKey;
+    private String companyName;
+    private String person;
+    private int contactKey;
+    private int directionKey;
 
     public ProviderModel(String companyName, String person, int contactKey, int directionKey) {
         this.companyName = companyName;

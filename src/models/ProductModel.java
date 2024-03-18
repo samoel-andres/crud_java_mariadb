@@ -1,10 +1,10 @@
 package models;
 
 public class ProductModel {
-    protected String name;
-    protected String size;
-    protected double price;
-    protected int stockKey;
+    private String name;
+    private String size;
+    private double price;
+    private int stockKey;
 
     public ProductModel(String name, String size, double price, int stockKey) {
         this.name = name;

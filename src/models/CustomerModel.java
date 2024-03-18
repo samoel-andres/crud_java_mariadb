@@ -1,10 +1,10 @@
 package models;
 
 public class CustomerModel {
-    protected String name;
-    protected String lastname;
-    protected String dni;
-    protected String curp;
+    private String name;
+    private String lastname;
+    private String dni;
+    private String curp;
 
     public CustomerModel(String name, String lastname, String dni, String curp) {
         this.name = name;

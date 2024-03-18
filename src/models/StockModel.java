@@ -1,12 +1,12 @@
 package models;
 
 public class StockModel {
-    protected int units;
-    protected String unitType;
-    protected double unitsByUnitType;
-    protected double totalUnits;
-    protected double priceByUnitType;
-    protected int providerKey;
+    private int units;
+    private String unitType;
+    private double unitsByUnitType;
+    private double totalUnits;
+    private double priceByUnitType;
+    private int providerKey;
 
     public StockModel(int units, String unitType, double unitsByUnitType, double totalUnits, double priceByUnitType,
             int providerKey) {

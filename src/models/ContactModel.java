@@ -1,8 +1,8 @@
 package models;
 
 public class ContactModel {
-    protected int phoneNumber;
-    protected String email;
+    private int phoneNumber;
+    private String email;
 
     public ContactModel(int phoneNumber, String email) {
         this.phoneNumber = phoneNumber;
