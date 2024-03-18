@@ -7,15 +7,17 @@ public class CouponModel {
     private String status;
     private String couponType;
     private double award;
+    private String coupon;
 
     public CouponModel(double minPurchase, double maxPurchase, String expires, String status, String couponType,
-            double award) {
+            double award, String coupon) {
         this.minPurchase = minPurchase;
         this.maxPurchase = maxPurchase;
         this.expires = expires;
         this.status = status;
         this.couponType = couponType;
         this.award = award;
+        this.coupon = coupon;
     }
 
     public double getMinPurchase() {
@@ -64,6 +66,14 @@ public class CouponModel {
 
     public void setAward(double award) {
         this.award = award;
+    }
+
+    public String getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(String coupon) {
+        this.coupon = coupon;
     }
 
 }
