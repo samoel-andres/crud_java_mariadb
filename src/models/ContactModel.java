@@ -1,19 +1,19 @@
 package models;
 
 public class ContactModel {
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
 
-    public ContactModel(int phoneNumber, String email) {
+    public ContactModel(String phoneNumber, String email) {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
