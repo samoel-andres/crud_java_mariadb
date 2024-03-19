@@ -60,7 +60,7 @@ public class CouponController extends CouponModel implements Key {
         }
     }
 
-    public boolean update(int key) {
+    public boolean update(BigDecimal key) {
         try {
             Connection connection = mdb.connect();
             PreparedStatement statement = connection
@@ -73,7 +73,7 @@ public class CouponController extends CouponModel implements Key {
             statement.setString(5, this.getCouponType());
             statement.setString(6, String.valueOf(this.getAward()));
             statement.setString(7, this.getCoupon());
-            statement.setInt(8, key);
+            statement.setString(8, String.valueOf(key));
             statement.execute();
 
             statement.close();

@@ -57,7 +57,7 @@ public class DirectionController extends DirectionModel implements Key {
         }
     }
 
-    public boolean update(int key) {
+    public boolean update(BigDecimal key) {
         try {
             Connection connection = mdb.connect();
             PreparedStatement statement = connection.prepareStatement(
@@ -67,7 +67,7 @@ public class DirectionController extends DirectionModel implements Key {
             statement.setString(3, String.valueOf(this.getIntNum()));
             statement.setString(4, this.getDelegation());
             statement.setString(5, this.getCountry());
-            statement.setInt(6, key);
+            statement.setString(6, String.valueOf(key));
             statement.executeUpdate();
 
             statement.close();

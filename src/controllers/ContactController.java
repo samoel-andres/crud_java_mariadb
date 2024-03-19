@@ -56,14 +56,14 @@ public class ContactController extends ContactModel implements Key {
         }
     }
 
-    public boolean update(int key) {
+    public boolean update(BigDecimal key) {
         try {
             Connection connection = mdb.connect();
             PreparedStatement statement = connection
                     .prepareStatement("UPDATE contacts SET phone_number = ?, email = ? WHERE pk_contact = ?");
             statement.setString(1, this.getPhoneNumber());
             statement.setString(2, this.getEmail());
-            statement.setInt(3, key);
+            statement.setString(3, String.valueOf(key));
             statement.executeUpdate();
 
             statement.close();
