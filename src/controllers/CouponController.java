@@ -46,7 +46,7 @@ public class CouponController extends CouponModel {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM coupons");
             ResultSet rs = statement.executeQuery();
 
-            rs.close();
+            statement.close();
             connection.close();
 
             return rs;
