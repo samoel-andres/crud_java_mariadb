@@ -29,7 +29,10 @@ public class CouponController extends CouponModel {
             statement.setDouble(6, this.getAward());
             statement.setString(7, this.getCoupon());
             statement.executeUpdate();
+
+            statement.close();
             connection.close();
+
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -42,7 +45,10 @@ public class CouponController extends CouponModel {
             Connection connection = mdb.connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM coupons");
             ResultSet rs = statement.executeQuery();
+
+            rs.close();
             connection.close();
+
             return rs;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -65,7 +71,10 @@ public class CouponController extends CouponModel {
             statement.setString(7, this.getCoupon());
             statement.setInt(8, key);
             statement.execute();
+
+            statement.close();
             connection.close();
+
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
