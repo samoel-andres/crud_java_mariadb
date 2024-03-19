@@ -1,14 +1,16 @@
 package controllers;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import config.MariaDB;
+import helpers.Key;
 import models.CouponModel;
 
-public class CouponController extends CouponModel {
+public class CouponController extends CouponModel implements Key {
     private MariaDB mdb = new MariaDB();
 
     public CouponController(double minPurchase, double maxPurchase, String expires, String status, String couponType,
@@ -16,7 +18,7 @@ public class CouponController extends CouponModel {
         super(minPurchase, maxPurchase, expires, status, couponType, award, coupon);
     }
 
-    public boolean create() {
+    public BigDecimal create() {
         try {
             Connection connection = mdb.connect();
             PreparedStatement statement = connection.prepareStatement(
@@ -30,13 +32,15 @@ public class CouponController extends CouponModel {
             statement.setString(7, this.getCoupon());
             statement.executeUpdate();
 
+            BigDecimal key = generatedKey(statement);
+
             statement.close();
             connection.close();
 
-            return true;
+            return key;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            return false;
+            return null;
         }
     }
 
@@ -84,6 +88,23 @@ public class CouponController extends CouponModel {
 
     public boolean delete() {
         return false;
+    }
+
+    @Override
+    public BigDecimal generatedKey(PreparedStatement statement) {
+        ResultSet rs;
+        BigDecimal key;
+        try {
+            rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                key = rs.getBigDecimal(1);
+                rs.close();
+                return key;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }
