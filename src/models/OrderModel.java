@@ -1,23 +1,25 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class OrderModel {
-    private int userKey;
-    private int customerKey;
-    private int couponKey;
-    private int productKey;
-    private int cantItems;
+    private BigDecimal userKey;
+    private BigDecimal customerKey;
+    private BigDecimal couponKey;
+    private String listItems;
+    private double cantItems;
     private double onAccount;
     private double subtotal;
     private String status;
     private String comments;
     private String flag;
 
-    public OrderModel(int userKey, int customerKey, int couponKey, int productKey, int cantItems, double onAccount,
-            double subtotal, String status, String comments, String flag) {
+    public OrderModel(BigDecimal userKey, BigDecimal customerKey, BigDecimal couponKey, String listItems,
+            double cantItems, double onAccount, double subtotal, String status, String comments, String flag) {
         this.userKey = userKey;
         this.customerKey = customerKey;
         this.couponKey = couponKey;
-        this.productKey = productKey;
+        this.listItems = listItems;
         this.cantItems = cantItems;
         this.onAccount = onAccount;
         this.subtotal = subtotal;
@@ -26,43 +28,43 @@ public class OrderModel {
         this.flag = flag;
     }
 
-    public int getUserKey() {
+    public BigDecimal getUserKey() {
         return userKey;
     }
 
-    public void setUserKey(int userKey) {
+    public void setUserKey(BigDecimal userKey) {
         this.userKey = userKey;
     }
 
-    public int getCustomerKey() {
+    public BigDecimal getCustomerKey() {
         return customerKey;
     }
 
-    public void setCustomerKey(int customerKey) {
+    public void setCustomerKey(BigDecimal customerKey) {
         this.customerKey = customerKey;
     }
 
-    public int getCouponKey() {
+    public BigDecimal getCouponKey() {
         return couponKey;
     }
 
-    public void setCouponKey(int couponKey) {
+    public void setCouponKey(BigDecimal couponKey) {
         this.couponKey = couponKey;
     }
 
-    public int getProductKey() {
-        return productKey;
+    public String getProductKey() {
+        return listItems;
     }
 
-    public void setProductKey(int productKey) {
-        this.productKey = productKey;
+    public void setProductKey(String listItems) {
+        this.listItems = listItems;
     }
 
-    public int getCantItems() {
+    public double getCantItems() {
         return cantItems;
     }
 
-    public void setCantItems(int cantItems) {
+    public void setCantItems(double cantItems) {
         this.cantItems = cantItems;
     }
 
