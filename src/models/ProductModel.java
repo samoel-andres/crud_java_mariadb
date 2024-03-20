@@ -1,12 +1,14 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class ProductModel {
     private String name;
     private String size;
     private double price;
-    private int stockKey;
+    private BigDecimal stockKey;
 
-    public ProductModel(String name, String size, double price, int stockKey) {
+    public ProductModel(String name, String size, double price, BigDecimal stockKey) {
         this.name = name;
         this.size = size;
         this.price = price;
@@ -37,11 +39,11 @@ public class ProductModel {
         this.price = price;
     }
 
-    public int getStockKey() {
+    public BigDecimal getStockKey() {
         return stockKey;
     }
 
-    public void setStockKey(int stockKey) {
+    public void setStockKey(BigDecimal stockKey) {
         this.stockKey = stockKey;
     }
 
