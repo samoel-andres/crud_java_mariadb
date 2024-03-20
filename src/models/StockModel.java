@@ -1,15 +1,17 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class StockModel {
     private int units;
     private String unitType;
     private double unitsByUnitType;
     private double totalUnits;
     private double priceByUnitType;
-    private int providerKey;
+    private BigDecimal providerKey;
 
     public StockModel(int units, String unitType, double unitsByUnitType, double totalUnits, double priceByUnitType,
-            int providerKey) {
+            BigDecimal providerKey) {
         this.units = units;
         this.unitType = unitType;
         this.unitsByUnitType = unitsByUnitType;
@@ -58,11 +60,11 @@ public class StockModel {
         this.priceByUnitType = priceByUnitType;
     }
 
-    public int getProviderKey() {
+    public BigDecimal getProviderKey() {
         return providerKey;
     }
 
-    public void setProviderKey(int providerKey) {
+    public void setProviderKey(BigDecimal providerKey) {
         this.providerKey = providerKey;
     }
 
