@@ -1,12 +1,14 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class ProviderModel {
     private String companyName;
     private String person;
-    private int contactKey;
-    private int directionKey;
+    private BigDecimal contactKey;
+    private BigDecimal directionKey;
 
-    public ProviderModel(String companyName, String person, int contactKey, int directionKey) {
+    public ProviderModel(String companyName, String person, BigDecimal contactKey, BigDecimal directionKey) {
         this.companyName = companyName;
         this.person = person;
         this.contactKey = contactKey;
@@ -29,19 +31,19 @@ public class ProviderModel {
         this.person = person;
     }
 
-    public int getContactKey() {
+    public BigDecimal getContactKey() {
         return contactKey;
     }
 
-    public void setContactKey(int contactKey) {
+    public void setContactKey(BigDecimal contactKey) {
         this.contactKey = contactKey;
     }
 
-    public int getDirectionKey() {
+    public BigDecimal getDirectionKey() {
         return directionKey;
     }
 
-    public void setDirectionKey(int directionKey) {
+    public void setDirectionKey(BigDecimal directionKey) {
         this.directionKey = directionKey;
     }
 
