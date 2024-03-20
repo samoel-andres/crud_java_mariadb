@@ -1,20 +1,23 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class UserModel {
     private String name;
     private String lastname;
     private String dni;
     private String curp;
-    private int customerKey;
-    private int directionLey;
+    private BigDecimal contactKey;
+    private BigDecimal directionKey;
 
-    public UserModel(String name, String lastname, String dni, String curp, int customerKey, int directionLey) {
+    public UserModel(String name, String lastname, String dni, String curp, BigDecimal contactKey,
+            BigDecimal directionKey) {
         this.name = name;
         this.lastname = lastname;
         this.dni = dni;
         this.curp = curp;
-        this.customerKey = customerKey;
-        this.directionLey = directionLey;
+        this.contactKey = contactKey;
+        this.directionKey = directionKey;
     }
 
     public String getName() {
@@ -49,20 +52,20 @@ public class UserModel {
         this.curp = curp;
     }
 
-    public int getCustomerKey() {
-        return customerKey;
+    public BigDecimal getContactKey() {
+        return contactKey;
     }
 
-    public void setCustomerKey(int customerKey) {
-        this.customerKey = customerKey;
+    public void setContactKey(BigDecimal contactKey) {
+        this.contactKey = contactKey;
     }
 
-    public int getDirectionLey() {
-        return directionLey;
+    public BigDecimal getDirectionKey() {
+        return directionKey;
     }
 
-    public void setDirectionLey(int directionLey) {
-        this.directionLey = directionLey;
+    public void setDirectionKey(BigDecimal directionKey) {
+        this.directionKey = directionKey;
     }
 
 }
