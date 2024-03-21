@@ -52,11 +52,11 @@ public class OrderModel {
         this.couponKey = couponKey;
     }
 
-    public String getProductKey() {
+    public String getListItems() {
         return listItems;
     }
 
-    public void setProductKey(String listItems) {
+    public void setListItems(String listItems) {
         this.listItems = listItems;
     }
 
