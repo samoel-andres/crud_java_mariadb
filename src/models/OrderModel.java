@@ -13,9 +13,11 @@ public class OrderModel {
     private String status;
     private String comments;
     private String flag;
+    private String date;
 
     public OrderModel(BigDecimal userKey, BigDecimal customerKey, BigDecimal couponKey, String listItems,
-            double cantItems, double onAccount, double subtotal, String status, String comments, String flag) {
+            double cantItems, double onAccount, double subtotal, String status, String comments, String flag,
+            String date) {
         this.userKey = userKey;
         this.customerKey = customerKey;
         this.couponKey = couponKey;
@@ -26,6 +28,7 @@ public class OrderModel {
         this.status = status;
         this.comments = comments;
         this.flag = flag;
+        this.date = date;
     }
 
     public BigDecimal getUserKey() {
@@ -106,6 +109,14 @@ public class OrderModel {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 }
