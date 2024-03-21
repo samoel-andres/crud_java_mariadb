@@ -10,9 +10,10 @@ public class SaleModel {
     private double cantItems;
     private double subtotal;
     private String flag;
+    private String date;
 
     public SaleModel(BigDecimal userKey, BigDecimal customerKey, BigDecimal couponKey, String listItems,
-            double cantItems, double subtotal, String flag) {
+            double cantItems, double subtotal, String flag, String date) {
         this.userKey = userKey;
         this.customerKey = customerKey;
         this.couponKey = couponKey;
@@ -20,6 +21,7 @@ public class SaleModel {
         this.cantItems = cantItems;
         this.subtotal = subtotal;
         this.flag = flag;
+        this.date = date;
     }
 
     public BigDecimal getUserKey() {
@@ -76,6 +78,18 @@ public class SaleModel {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public void setCantItems(double cantItems) {
+        this.cantItems = cantItems;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 }
