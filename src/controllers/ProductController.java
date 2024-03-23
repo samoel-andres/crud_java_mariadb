@@ -11,7 +11,6 @@ import helpers.Key;
 import models.ProductModel;
 
 public class ProductController extends ProductModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public ProductController(String name, String size, double price, BigDecimal stockKey) {
         super(name, size, price, stockKey);
@@ -19,7 +18,7 @@ public class ProductController extends ProductModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection
                     .prepareStatement("INSERT INTO products (name, size, price, stock_id_stock) VALUES(?, ?, ?, ?)");
             statement.setString(1, this.getName());
@@ -42,7 +41,7 @@ public class ProductController extends ProductModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM products");
             ResultSet rs = statement.executeQuery();
 
@@ -58,7 +57,7 @@ public class ProductController extends ProductModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE products SET name = ?, size = ?, price = ?, stock_id_stock = ? WHERE pk_product = ?");
             statement.setString(1, this.getName());

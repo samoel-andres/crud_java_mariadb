@@ -11,7 +11,6 @@ import helpers.Key;
 import models.UserModel;
 
 public class UserController extends UserModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public UserController(String name, String lastname, String dni, String curp, BigDecimal contactKey,
             BigDecimal directionKey) {
@@ -20,7 +19,7 @@ public class UserController extends UserModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO users (name, lastname, dni, curp, contacts_pk_contact, directions_pk_direction) VALUES(?, ?, ?, ?, ?, ?)");
             statement.setString(1, this.getName());
@@ -45,7 +44,7 @@ public class UserController extends UserModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
             ResultSet rs = statement.executeQuery();
 
@@ -61,7 +60,7 @@ public class UserController extends UserModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE users SET name = ?, lastname = ?, dni = ?, curp = ?, contacts_pk_contact = ?, directions_pk_direction = ? WHERE pk_user = ?");
             statement.setString(1, this.getName());

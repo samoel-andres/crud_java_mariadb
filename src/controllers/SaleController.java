@@ -13,7 +13,6 @@ import helpers.Key;
 import models.SaleModel;
 
 public class SaleController extends SaleModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public SaleController(BigDecimal userKey, BigDecimal customerKey, BigDecimal couponKey, String listItems,
             double cantItems, double subtotal, String flag, String date) {
@@ -25,7 +24,7 @@ public class SaleController extends SaleModel implements Key {
             Instant instant = Instant.now();
             Timestamp timestamp = Timestamp.from(instant);
 
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO sales (users_pk_user, customers_pk_customer, coupons_pk_coupon, list_items, cant_items, subtotal, flag, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, String.valueOf(this.getUserKey()));
@@ -52,7 +51,7 @@ public class SaleController extends SaleModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM sales");
             ResultSet rs = statement.executeQuery();
 
@@ -68,7 +67,7 @@ public class SaleController extends SaleModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE sales SET users_pk_user = ?, customers_pk_customer = ?, coupons_pk_coupon = ?, list_items = ?, cant_items = ?, subtotal = ?, flag = ?, date = ? WHERE pk_sale = ?");
             statement.setString(1, String.valueOf(this.getUserKey()));

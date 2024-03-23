@@ -12,7 +12,6 @@ import helpers.Key;
 import models.ContactModel;
 
 public class ContactController extends ContactModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public ContactController(String phoneNumber, String email) {
         super(phoneNumber, email);
@@ -20,7 +19,7 @@ public class ContactController extends ContactModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection
                     .prepareStatement("INSERT INTO contacts (phone_number, email) VALUES(?, ?)",
                             Statement.RETURN_GENERATED_KEYS);
@@ -42,7 +41,7 @@ public class ContactController extends ContactModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM contacts");
             ResultSet rs = statement.executeQuery();
 
@@ -58,7 +57,7 @@ public class ContactController extends ContactModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection
                     .prepareStatement("UPDATE contacts SET phone_number = ?, email = ? WHERE pk_contact = ?");
             statement.setString(1, this.getPhoneNumber());

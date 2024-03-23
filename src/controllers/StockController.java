@@ -11,7 +11,6 @@ import helpers.Key;
 import models.StockModel;
 
 public class StockController extends StockModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public StockController(int units, String unitType, double unitsByUnitType, double totalUnits,
             double priceByUnitType, BigDecimal providerKey) {
@@ -20,7 +19,7 @@ public class StockController extends StockModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection
                     .prepareStatement(
                             "INSERT INTO stock (units, unit_type, units_by_unit_type, total_units, price_by_unit_type, providers_pk_provider) VALUES(?, ?, ?, ?, ?, ?)");
@@ -46,7 +45,7 @@ public class StockController extends StockModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM stock");
             ResultSet rs = statement.executeQuery();
 
@@ -62,7 +61,7 @@ public class StockController extends StockModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE stock SET units = ?, unit_type = ?, units_by_unit_type = ?, total_units = ?, price_by_unit_type = ?, providers_pk_provider = ? WHERE id_stock = ?");
             statement.setString(1, String.valueOf(this.getUnits()));

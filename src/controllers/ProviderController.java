@@ -11,7 +11,6 @@ import helpers.Key;
 import models.ProviderModel;
 
 public class ProviderController extends ProviderModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public ProviderController(String companyName, String person, BigDecimal contactKey, BigDecimal directionKey) {
         super(companyName, person, contactKey, directionKey);
@@ -19,7 +18,7 @@ public class ProviderController extends ProviderModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO providers (company_name, person, contacts_pk_contact, directions_pk_direction) VALUES(?, ?, ?, ?)");
             statement.setString(1, this.getCompanyName());
@@ -42,7 +41,7 @@ public class ProviderController extends ProviderModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM providers");
             ResultSet rs = statement.executeQuery();
 
@@ -58,7 +57,7 @@ public class ProviderController extends ProviderModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE providers SET company_name = ?, person = ?, contacts_pk_contact = ?, directions_pk_direction = ? WHERE pk_provider = ?");
             statement.setString(1, this.getCompanyName());

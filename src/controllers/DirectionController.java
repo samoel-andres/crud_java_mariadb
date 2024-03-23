@@ -11,7 +11,6 @@ import helpers.Key;
 import models.DirectionModel;
 
 public class DirectionController extends DirectionModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public DirectionController(String street, int extNum, int intNum, String delegation, String country) {
         super(street, extNum, intNum, delegation, country);
@@ -19,7 +18,7 @@ public class DirectionController extends DirectionModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO directions (street, ext_num, int_num, delegation, country) VALUES(?, ?, ?, ?, ?)");
             statement.setString(1, this.getStreet());
@@ -43,7 +42,7 @@ public class DirectionController extends DirectionModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM directions");
             ResultSet rs = statement.executeQuery();
 
@@ -59,7 +58,7 @@ public class DirectionController extends DirectionModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE directions SET street = ?, ext_num = ?, int_num = ?, delegation = ?, country = ? WHERE pk_direction = ?");
             statement.setString(1, this.getStreet());

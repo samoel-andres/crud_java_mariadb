@@ -11,7 +11,6 @@ import helpers.Key;
 import models.CouponModel;
 
 public class CouponController extends CouponModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public CouponController(double minPurchase, double maxPurchase, String expires, String status, String couponType,
             double award, String coupon) {
@@ -20,7 +19,7 @@ public class CouponController extends CouponModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO coupons (minimum_purchase, maximum_purchase, expires, status, coupon_type, award, coupon) VALUES(?, ?, ?, ?, ?, ?, ?)");
             statement.setDouble(1, this.getMinPurchase());
@@ -46,7 +45,7 @@ public class CouponController extends CouponModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM coupons");
             ResultSet rs = statement.executeQuery();
 
@@ -62,7 +61,7 @@ public class CouponController extends CouponModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection
                     .prepareStatement(
                             "UPDATE coupons SET minimum_purchase = ?, maximum_purchase = ?, expires = ?, statuss = ?, coupon_type = ?, award = ?, coupon = ? WHERE pk_coupon = ?");

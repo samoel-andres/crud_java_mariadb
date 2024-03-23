@@ -11,7 +11,6 @@ import helpers.Key;
 import models.CustomerModel;
 
 public class CustomerController extends CustomerModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public CustomerController(String name, String lastname, String dni, String curp, BigDecimal pkContact,
             BigDecimal pkDirection) {
@@ -20,7 +19,7 @@ public class CustomerController extends CustomerModel implements Key {
 
     public BigDecimal create() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO customers (name, lastname, dni, curp, contacts_pk_contact, directions_pk_direction) VALUES(?, ?, ?, ?, ?, ?)");
             statement.setString(1, this.getName());
@@ -45,7 +44,7 @@ public class CustomerController extends CustomerModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers");
             ResultSet rs = statement.executeQuery();
 
@@ -61,7 +60,7 @@ public class CustomerController extends CustomerModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE customers SET name = ?, lastname = ?, dni = ?, curp = ? WHERE pk_customer = ?");
             statement.setString(1, this.getName());

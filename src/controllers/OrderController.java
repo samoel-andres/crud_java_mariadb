@@ -13,7 +13,6 @@ import helpers.Key;
 import models.OrderModel;
 
 public class OrderController extends OrderModel implements Key {
-    private MariaDB mdb = new MariaDB();
 
     public OrderController(BigDecimal userKey, BigDecimal customerKey, BigDecimal couponKey, String listItems,
             double cantItems, double onAccount, double subtotal, String status, String comments, String flag,
@@ -26,7 +25,7 @@ public class OrderController extends OrderModel implements Key {
             Instant instant = Instant.now();
             Timestamp timestamp = Timestamp.from(instant);
 
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO orders (users_pk_user, customers_pk_customer, coupons_pk_coupon, list_items, cant_items, subtotal, on_account, status, comments, flag, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, String.valueOf(this.getUserKey()));
@@ -56,7 +55,7 @@ public class OrderController extends OrderModel implements Key {
 
     public ResultSet read() {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders");
             ResultSet rs = statement.executeQuery();
 
@@ -72,7 +71,7 @@ public class OrderController extends OrderModel implements Key {
 
     public boolean update(BigDecimal key) {
         try {
-            Connection connection = mdb.connect();
+            Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE orders SET users_pk_user = ?, customers_pk_customer = ?, coupons_pk_coupon = ?, list_items = ?, cant_items = ?, subtotal  = ?, on_account = ?, status = ?, comments = ?, flag = ?, date = ? WHERE pk_order = ?");
             statement.setString(1, String.valueOf(this.getUserKey()));
