@@ -21,7 +21,7 @@ public class CouponController extends CouponModel implements Key {
         try {
             Connection connection = new MariaDB().connect();
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO coupons (minimum_purchase, maximum_purchase, expires, status, coupon_type, award, coupon) VALUES(?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO coupons (minimum_purchase, maximum_purchase, expires, statuss, coupon_type, award, coupon) VALUES(?, ?, ?, ?, ?, ?, ?)");
             statement.setDouble(1, this.getMinPurchase());
             statement.setDouble(2, this.getMaxPurchase());
             statement.setString(3, this.getExpires());
@@ -85,8 +85,21 @@ public class CouponController extends CouponModel implements Key {
         }
     }
 
-    public boolean delete() {
-        return false;
+    public boolean delete(BigDecimal key) {
+        try {
+            Connection connection = new MariaDB().connect();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM coupons WHERE pk_coupon = ?");
+            statement.setString(1, String.valueOf(key));
+            statement.executeUpdate();
+
+            statement.close();
+            connection.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override

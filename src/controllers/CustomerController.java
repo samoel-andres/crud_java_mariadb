@@ -80,8 +80,21 @@ public class CustomerController extends CustomerModel implements Key {
         }
     }
 
-    public boolean delete() {
-        return false;
+    public boolean delete(BigDecimal key) {
+        try {
+            Connection connection = new MariaDB().connect();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE pk_customer = ?");
+            statement.setString(1, String.valueOf(key));
+            statement.executeUpdate();
+
+            statement.close();
+            connection.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override

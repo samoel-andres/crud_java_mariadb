@@ -75,8 +75,21 @@ public class ContactController extends ContactModel implements Key {
         }
     }
 
-    public boolean delete() {
-        return false;
+    public boolean delete(BigDecimal key) {
+        try {
+            Connection connection = new MariaDB().connect();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM contacts WHERE pk_contact = ?");
+            statement.setString(1, String.valueOf(key));
+            statement.executeUpdate();
+
+            statement.close();
+            connection.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
