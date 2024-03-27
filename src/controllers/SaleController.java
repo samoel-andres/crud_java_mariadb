@@ -52,7 +52,8 @@ public class SaleController extends SaleModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM sales");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT sales.pk_sale AS 'Sale ID', sales.users_pk_user AS 'User ID', sales.customers_pk_customer AS 'Customer ID', sales.list_items AS 'Products list', sales.cant_items AS 'Number of items', sales.subtotal AS 'Purchase amount', sales.date AS 'Purchase date', coupons.coupon AS 'Coupon', coupons.coupon_type AS 'Coupon type', coupons.award AS 'Award', customers.name AS 'Customer name', users.name AS 'User name' FROM sales INNER JOIN customers ON sales.customers_pk_customer = customers.pk_customer INNER JOIN users ON sales.users_pk_user = users.pk_user INNER JOIN coupons ON sales.coupons_pk_coupon = coupons.pk_coupon");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

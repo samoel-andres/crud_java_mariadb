@@ -46,7 +46,8 @@ public class CouponController extends CouponModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM coupons");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT coupons.pk_coupon AS 'Coupon ID', coupons.minimum_purchase AS 'Minimum purchase', coupons.maximum_purchase AS 'Maximum purchase', coupons.expires AS 'Expires date', coupons.statuss AS 'Coupon status', coupons.coupon_type AS 'Coupon type', coupons.award AS 'Award', coupons.coupon AS 'Coupon' FROM coupons");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

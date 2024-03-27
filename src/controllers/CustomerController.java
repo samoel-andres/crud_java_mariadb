@@ -45,7 +45,8 @@ public class CustomerController extends CustomerModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

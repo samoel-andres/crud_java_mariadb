@@ -45,7 +45,8 @@ public class UserController extends UserModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT users.pk_user AS 'User ID', users.name AS 'User name', users.lastname AS 'User lastname', users.dni AS 'User DNI', users.curp AS 'User CURP', users.contacts_pk_contact AS 'Contact key', users.directions_pk_direction AS 'Address key', directions.street AS 'User address', directions.ext_num AS 'User exterior number', directions.int_num AS 'User interior number', directions.delegation AS 'User delegation', directions.country AS 'User country', contacts.phone_number AS 'User phone',  contacts.email AS 'User mail' FROM users INNER JOIN directions ON users.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON users.contacts_pk_contact = contacts.pk_contact");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

@@ -56,7 +56,8 @@ public class OrderController extends OrderModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT orders.pk_order AS 'Order ID', orders.users_pk_user AS 'User ID', orders.customers_pk_customer AS 'Customer ID', orders.coupons_pk_coupon AS 'Coupon', orders.list_items AS 'List items', orders.cant_items AS 'Number of items', orders.subtotal AS 'Purchase amount', orders.on_account AS 'On account', orders.`status` AS 'Order status', orders.comments AS 'Order comments', orders.date AS 'Order date', coupons.coupon AS 'Coupon', coupons.coupon_type AS 'Coupon type', coupons.award AS 'Award', customers.name AS 'Customer name', users.name AS 'User name' FROM orders INNER JOIN customers ON orders.customers_pk_customer = customers.pk_customer INNER JOIN users ON orders.users_pk_user = users.pk_user INNER JOIN coupons ON orders.coupons_pk_coupon = coupons.pk_coupon");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

@@ -42,7 +42,8 @@ public class ProductController extends ProductModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM products");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

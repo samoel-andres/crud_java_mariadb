@@ -42,7 +42,8 @@ public class ProviderController extends ProviderModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM providers");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT providers.pk_provider AS 'Provider ID', providers.company_name AS 'Company name', providers.person AS 'Person', providers.directions_pk_direction AS 'Address key', providers.contacts_pk_contact AS 'Contact key', directions.street AS 'Provider street', directions.ext_num AS 'Provider exterior number', directions.int_num AS 'Provider interior number', directions.delegation AS 'Provider delegation', directions.country AS 'Provider country', contacts.phone_number AS 'Provider phone', contacts.email AS 'Provider mail' FROM providers INNER JOIN directions ON providers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON providers.contacts_pk_contact = contacts.pk_contact");
             ResultSet rs = statement.executeQuery();
 
             statement.close();

@@ -46,7 +46,8 @@ public class StockController extends StockModel implements Key {
     public ResultSet read() {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM stock");
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT stock.id_stock AS 'Stock ID', stock.units AS 'Units in stock', stock.unit_type AS 'Unit type', stock.units_by_unit_type AS 'Units by unit', stock.total_units AS 'Total units', stock.price_by_unit_type AS 'Price by unit', stock.providers_pk_provider AS 'Provider ID', providers.company_name AS 'Provider name' FROM stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider");
             ResultSet rs = statement.executeQuery();
 
             statement.close();
