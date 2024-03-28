@@ -39,11 +39,25 @@ public class ProductController extends ProductModel implements Key {
         }
     }
 
-    public ResultSet read() {
+    // modificando
+    public ResultSet read(String by, String value) {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider");
+            PreparedStatement statement = connection.prepareStatement("");
+
+            if (by == "product-name") {
+                statement = connection.prepareStatement(
+                        "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', stock.total_units AS 'In stock', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider WHERE products.name = ?");
+                statement.setString(1, value);
+            } else if (by == "product-key") {
+                statement = connection.prepareStatement(
+                        "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', stock.total_units AS 'In stock', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider WHERE products.pk_product = ?");
+                statement.setString(1, value);
+            } else if (by == "all") {
+                statement = connection.prepareStatement(
+                        "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', stock.total_units AS 'In stock', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider");
+            }
+
             ResultSet rs = statement.executeQuery();
 
             statement.close();
