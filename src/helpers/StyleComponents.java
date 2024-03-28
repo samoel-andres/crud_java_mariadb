@@ -8,10 +8,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.Font;
-import java.awt.LayoutManager;
 
 public class StyleComponents {
     private JTextField TextField;
@@ -22,18 +21,18 @@ public class StyleComponents {
     private JTable Table;
     private DefaultTableModel TableModel;
 
-    public JPanel Panel(LayoutManager layout, Color background) {
+    public JPanel Panel() {
         this.Panel = new JPanel();
-        this.Panel.setLayout(layout);
-        this.Panel.setBackground(background);
+        this.Panel.setLayout(null);
+        this.Panel.setBackground(new Color(255, 255, 255));
         return this.Panel;
     }
 
-    public JLabel Label(String text, Color background, Color foreground, int x, int y, int width, int height) {
+    public JLabel Label(String text, int x, int y, int width, int height) {
         this.Label = new JLabel(text);
         this.Label.setFont(new java.awt.Font("Nunito", Font.PLAIN, 16));
-        this.Label.setBackground(background);
-        this.Label.setForeground(foreground);
+        this.Label.setBackground(new Color(255, 255, 255));
+        this.Label.setForeground(new Color(0, 0, 0));
         this.Label.setBounds(x, y, width, height);
         return this.Label;
     }
@@ -48,26 +47,41 @@ public class StyleComponents {
         return this.TextField;
     }
 
-    public JButton Button(String text, Color background, Color foreground, int x, int y, int width, int height) {
+    public JButton Button(String text, int x, int y, int width, int height) {
         this.Button = new JButton(text);
         this.Button.setFont(new java.awt.Font("Nunito", Font.PLAIN, 16));
-        this.Button.setBackground(background);
-        this.Button.setForeground(foreground);
+        this.Button.setBackground(new Color(26, 82, 118));
+        this.Button.setForeground(new Color(255, 255, 255));
         this.Button.setBounds(x, y, width, height);
         return this.Button;
     }
 
-    public JScrollPane ScrollPane(Color background, Color foreground, int x, int y, int width, int height) {
+    public JScrollPane ScrollPane(int x, int y, int width, int height) {
         this.ScrollPane = new JScrollPane();
         this.ScrollPane.getViewport().setFont(new java.awt.Font("Nunito", Font.PLAIN, 16));
-        this.ScrollPane.getViewport().setBackground(background);
-        this.ScrollPane.getViewport().setForeground(foreground);
+        this.ScrollPane.getViewport().setBackground(new Color(255, 255, 255));
+        this.ScrollPane.getViewport().setForeground(new Color(0, 0, 0));
         this.ScrollPane.setBounds(x, y, width, height);
         return this.ScrollPane;
     }
 
     public JTable Table() {
         this.Table = new JTable();
+
+        // body
+        this.Table.setSelectionBackground(new Color(26, 82, 118));
+        this.Table.setSelectionForeground(new Color(255, 255, 255));
+        this.Table.setBorder(null);
+        this.Table.setShowGrid(false);
+        this.Table.setRowHeight(25);
+        this.Table.setRowMargin(1);
+
+        // header
+        ((DefaultTableCellRenderer) this.Table.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.LEFT);
+        this.Table.getTableHeader().setBackground(new Color(255, 255, 255));
+        this.Table.getTableHeader().setForeground(new Color(0, 0, 0));
+        this.Table.getTableHeader().setFont(new Font("Nunito", Font.BOLD, 13));
         return this.Table;
     }
 
