@@ -69,8 +69,8 @@ public class StyleComponents {
         this.Table = new JTable();
 
         // body
-        this.Table.setSelectionBackground(new Color(26, 82, 118));
-        this.Table.setSelectionForeground(new Color(255, 255, 255));
+        this.Table.setSelectionBackground(new Color(232, 234, 234));
+        this.Table.setSelectionForeground(new Color(0, 0, 0));
         this.Table.setBorder(null);
         this.Table.setShowGrid(false);
         this.Table.setRowHeight(25);
