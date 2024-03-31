@@ -82,11 +82,16 @@ public class StyleComponents {
         this.Table.getTableHeader().setBackground(new Color(255, 255, 255));
         this.Table.getTableHeader().setForeground(new Color(0, 0, 0));
         this.Table.getTableHeader().setFont(new Font("Nunito", Font.BOLD, 13));
+
         return this.Table;
     }
 
     public DefaultTableModel TableModel(String[] columns) {
-        this.TableModel = new DefaultTableModel();
+        this.TableModel = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        };
 
         for (String column : columns) {
             this.TableModel.addColumn(column);
