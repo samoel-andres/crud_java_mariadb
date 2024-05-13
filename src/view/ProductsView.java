@@ -128,7 +128,8 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
             }
 
             if (rows == 0) {
-                JOptionPane.showMessageDialog(this, "No data", "Information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Unregistered product", "Information",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
 
             this.txtProductKey.setText("");
