@@ -5,8 +5,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +22,7 @@ public class StyleComponents {
     private JScrollPane ScrollPane;
     private JTable Table;
     private DefaultTableModel TableModel;
+    private JSeparator Separator;
 
     public JPanel Panel() {
         this.Panel = new JPanel();
@@ -98,6 +101,20 @@ public class StyleComponents {
         }
 
         return this.TableModel;
+    }
+
+    public JSeparator Separator(String orientation, int x, int y, int width, int height) {
+        this.Separator = new JSeparator();
+
+        if (orientation == "horizontal") {
+            this.Separator.setOrientation(SwingConstants.HORIZONTAL);
+        } else if (orientation == "vertical") {
+            this.Separator.setOrientation(SwingConstants.VERTICAL);
+        }
+
+        this.Separator.setBounds(x, y, width, height);
+
+        return this.Separator;
     }
 
 }
