@@ -112,6 +112,7 @@ public class StyleComponents {
             this.Separator.setOrientation(SwingConstants.VERTICAL);
         }
 
+        this.Separator.setForeground(new Color(26, 82, 118));
         this.Separator.setBounds(x, y, width, height);
 
         return this.Separator;
