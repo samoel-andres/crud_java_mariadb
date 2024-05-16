@@ -604,4 +604,24 @@ public class Controller {
         return null;
     }
 
+    public ResultSet readCustomers(String value) {
+        try {
+            String validation = new Validator().VerifyString(value.toUpperCase());
+            String by = "all";
+
+            if (validation != "Err" && !value.isEmpty()) {
+                by = "find";
+            } else {
+                by = "all";
+            }
+
+            return new CustomerController(this.name, this.lastname, this.dni, this.curp, new BigDecimal(0),
+                    new BigDecimal(0))
+                    .read(by, value.toUpperCase());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 }
