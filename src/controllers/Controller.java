@@ -13,7 +13,8 @@ public class Controller {
     private String phone_number, email, street, ext_num, int_num, delegation, country, name, lastname, dni, curp,
             company_name, person, units, unit_type, units_by_unit_type, total_units, price_by_unit_type, product_name,
             size, price, list_items, cant_items, subtotal, on_account, status, comments, flag, minimum_purchase,
-            maximum_purchase, expires, coupon_type, award, coupon;
+            maximum_purchase, expires, coupon_type, award;
+    // , coupon;
 
     public Controller() {
     }
@@ -58,7 +59,7 @@ public class Controller {
         this.expires = expires;
         this.coupon_type = coupon_type;
         this.award = award;
-        this.coupon = coupon;
+        // this.coupon = coupon;
     }
 
     public String newCustomer() {
@@ -604,15 +605,23 @@ public class Controller {
         return null;
     }
 
-    public ResultSet readCustomers(String value) {
+    public ResultSet readCustomers(String value, String CID) {
         try {
             String validation = new Validator().VerifyString(value.toUpperCase());
             String by = "all";
 
-            if (validation != "Err" && !value.isEmpty()) {
-                by = "find";
+            if (CID.isEmpty()) {
+                if (validation != "Err" && !value.isEmpty()) {
+                    by = "find";
+                } else {
+                    by = "all";
+                }
             } else {
-                by = "all";
+                validation = new Validator().VerifyInteger(CID);
+
+                if (validation == "Err" && !CID.isEmpty()) {
+                    by = "CID";
+                }
             }
 
             return new CustomerController(this.name, this.lastname, this.dni, this.curp, new BigDecimal(0),
