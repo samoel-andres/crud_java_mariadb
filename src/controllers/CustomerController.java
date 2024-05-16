@@ -42,18 +42,56 @@ public class CustomerController extends CustomerModel implements Key {
         }
     }
 
-    public ResultSet read() {
+    public ResultSet read(String by, String value) {
         try {
             Connection connection = new MariaDB().connect();
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact");
-            ResultSet rs = statement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement("");
+            ResultSet rs = null;
+
+            if (by == "all") {
+                statement = connection.prepareStatement(
+                        "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact");
+
+                rs = statement.executeQuery();
+            } else if (by == "find") {
+                statement = connection.prepareStatement(
+                        "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact WHERE customers.name = ?");
+                statement.setString(1, value);
+
+                rs = statement.executeQuery();
+
+                if (!rs.isBeforeFirst()) {
+                    statement = connection.prepareStatement(
+                            "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact WHERE customers.dni = ?");
+                    statement.setString(1, value);
+
+                    rs = statement.executeQuery();
+                }
+
+                if (!rs.isBeforeFirst()) {
+                    statement = connection.prepareStatement(
+                            "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact WHERE customers.curp = ?");
+                    statement.setString(1, value);
+
+                    rs = statement.executeQuery();
+                }
+
+                if (!rs.isBeforeFirst()) {
+                    statement = connection.prepareStatement(
+                            "SELECT customers.pk_customer AS 'Customer ID', customers.name AS 'Customer name', customers.lastname AS 'Customer lastname', customers.dni AS 'Customer DNI', customers.curp AS 'Customer CURP', customers.contacts_pk_contact AS 'Contact key', customers.directions_pk_direction AS 'Address key', directions.street AS 'Customer street', directions.ext_num AS 'Customer exterior number', directions.int_num AS 'Customer interior number', directions.delegation AS 'Customer delegation', directions.country AS 'Customer country', contacts.phone_number AS 'Customer phone', contacts.email AS 'Customer mail' FROM customers INNER JOIN directions ON customers.directions_pk_direction = directions.pk_direction INNER JOIN contacts ON customers.contacts_pk_contact = contacts.pk_contact WHERE contacts.email= ?");
+                    statement.setString(1, value);
+
+                    rs = statement.executeQuery();
+                }
+            }
 
             statement.close();
             connection.close();
 
             return rs;
-        } catch (SQLException e) {
+        } catch (
+
+        SQLException e) {
             System.out.println(e.getMessage());
             return null;
         }
