@@ -46,7 +46,7 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
         private String CID;
         private ResultSet customerDetails;
 
-        public ManagementCustomerView(HomeView parent, String title, boolean modal) {
+        public ManagementCustomerView(MoreView parent, String title, boolean modal) {
                 // windows configuration
                 super(parent, title, modal);
                 this.setLocationRelativeTo(parent);
