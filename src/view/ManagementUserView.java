@@ -210,27 +210,45 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
         this.add(panel);
     }
 
-    @Override
-    public void keyPressed(KeyEvent arg0) {
+    private void clearForm() {
+        txtName.setText("");
+        txtLastname.setText("");
+        txtDni.setText("");
+        txtCurp.setText("");
+        txtStreet.setText("");
+        txtExtNum.setText("");
+        txtIntNum.setText("");
+        txtDelegation.setText("");
+        txtCountry.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
+        btnModify.setEnabled(false);
     }
 
     @Override
-    public void keyReleased(KeyEvent arg0) {
+    public void keyPressed(KeyEvent e) {
     }
 
     @Override
-    public void keyTyped(KeyEvent arg0) {
+    public void keyReleased(KeyEvent e) {
     }
 
     @Override
-    public void focusGained(FocusEvent arg0) {
+    public void keyTyped(KeyEvent e) {
     }
 
     @Override
-    public void focusLost(FocusEvent arg0) {
+    public void focusGained(FocusEvent e) {
+        if (e.getSource() == txtSearch) {
+            this.txtSearch.setText("");
+        }
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
+    public void focusLost(FocusEvent e) {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
     }
 }
