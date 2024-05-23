@@ -226,6 +226,27 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
     }
 
     @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnAdd) {
+
+        } else if (e.getSource() == btnModify) {
+
+        } else if (e.getSource() == btnRemove) {
+
+        } else if (e.getSource() == btnSearch) {
+
+        } else if (e.getSource() == btnClearForm) {
+            this.clearForm();
+            this.txtName.requestFocus();
+        } else if (e.getSource() == btnEdit) {
+
+        } else if (e.getSource() == btnReturn) {
+            this.clearForm();
+            this.setVisible(false);
+        }
+    }
+
+    @Override
     public void keyPressed(KeyEvent e) {
     }
 
@@ -246,9 +267,5 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
 
     @Override
     public void focusLost(FocusEvent e) {
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 }
