@@ -279,18 +279,7 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                                 txtEmail.setText(customerDetails.getString("Customer mail"));
                                 btnModify.setEnabled(true);
                         } else {
-                                txtName.setText("");
-                                txtLastname.setText("");
-                                txtDni.setText("");
-                                txtCurp.setText("");
-                                txtStreet.setText("");
-                                txtExtNum.setText("");
-                                txtIntNum.setText("");
-                                txtDelegation.setText("");
-                                txtCountry.setText("");
-                                txtPhone.setText("");
-                                txtEmail.setText("");
-                                btnModify.setEnabled(false);
+                                this.clearForm();
                         }
                 } catch (Exception e) {
                         System.out.println(e.getMessage());
