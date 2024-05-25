@@ -288,11 +288,11 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
-
+                        // add event
                 } else if (e.getSource() == btnModify) {
-
+                        // add event
                 } else if (e.getSource() == btnRemove) {
-
+                        // add event
                 } else if (e.getSource() == btnSearch) {
                         this.loadUsers();
                 } else if (e.getSource() == btnClearForm) {
