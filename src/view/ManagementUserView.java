@@ -294,7 +294,7 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 } else if (e.getSource() == btnRemove) {
 
                 } else if (e.getSource() == btnSearch) {
-
+                        this.loadUsers();
                 } else if (e.getSource() == btnClearForm) {
                         this.clearForm();
                         this.txtName.requestFocus();
