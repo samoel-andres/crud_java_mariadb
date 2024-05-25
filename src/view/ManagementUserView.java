@@ -258,6 +258,33 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 btnModify.setEnabled(false);
         }
 
+        private void loadUserDetails() {
+                try {
+                        userDetails = new Controller().readUsers("", this.UID);
+
+                        if (userDetails.next()) {
+                                txtName.setText(userDetails.getString("User name"));
+                                txtLastname.setText(userDetails.getString("User lastname"));
+                                txtDni.setText(userDetails.getString("User DNI"));
+                                txtCurp.setText(userDetails.getString("User CURP"));
+                                txtStreet.setText(userDetails.getString("User address"));
+                                txtExtNum.setText(userDetails.getString("User exterior number"));
+                                txtIntNum.setText(userDetails.getString("User interior number"));
+                                txtDelegation.setText(userDetails.getString("User delegation"));
+                                txtCountry.setText(userDetails.getString("User country"));
+                                txtPhone.setText(userDetails.getString("User phone"));
+                                txtEmail.setText(userDetails.getString("User mail"));
+                                btnModify.setEnabled(true);
+                        } else {
+                                this.clearForm();
+                        }
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        JOptionPane.showMessageDialog(this, "An error ocurred while loading data in the form", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
@@ -272,7 +299,23 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                         this.clearForm();
                         this.txtName.requestFocus();
                 } else if (e.getSource() == btnEdit) {
+                        this.clearForm();
 
+                        int rowSelected = tUsersList.getSelectedRow();
+
+                        if (rowSelected >= 0) {
+                                try {
+                                        this.UID = (String) tModel.getValueAt(rowSelected, 0);
+                                        this.loadUserDetails();
+                                } catch (Exception ex) {
+                                        JOptionPane.showMessageDialog(this, "Oops, an unexpected error ocurred",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this,
+                                                "Please, select row from the table for edit the information",
+                                                "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnReturn) {
                         this.clearForm();
                         this.setVisible(false);
