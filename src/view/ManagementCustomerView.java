@@ -290,7 +290,11 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
 
         @Override
         public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == btnSearch) {
+                if (e.getSource() == btnAdd) {
+                        // add event
+                } else if (e.getSource() == btnModify) {
+                        // add event
+                } else if (e.getSource() == btnSearch) {
                         this.loadCustomers();
                 } else if (e.getSource() == btnClearForm) {
                         this.clearForm();
