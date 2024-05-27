@@ -171,6 +171,26 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                 btnRemove.addActionListener(this);
                 btnEdit.addActionListener(this);
 
+                btnSearch.addKeyListener(this);
+                txtName.addKeyListener(this);
+                txtLastname.addKeyListener(this);
+                txtDni.addKeyListener(this);
+                txtCurp.addKeyListener(this);
+                txtStreet.addKeyListener(this);
+                txtExtNum.addKeyListener(this);
+                txtIntNum.addKeyListener(this);
+                txtDelegation.addKeyListener(this);
+                txtCountry.addKeyListener(this);
+                txtPhone.addKeyListener(this);
+                txtEmail.addKeyListener(this);
+                btnAdd.addKeyListener(this);
+                btnModify.addKeyListener(this);
+                btnClearForm.addKeyListener(this);
+                btnReturn.addKeyListener(this);
+                txtSearch.addKeyListener(this);
+                btnRemove.addKeyListener(this);
+                btnEdit.addKeyListener(this);
+
                 txtSearch.addFocusListener(this);
 
                 // add components at panel
@@ -346,7 +366,10 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
 
         @Override
         public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        this.clearForm();
+                        this.setVisible(false);
+                }
         }
 
         @Override
