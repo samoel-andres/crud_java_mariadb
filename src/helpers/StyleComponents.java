@@ -2,6 +2,7 @@ package helpers;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,6 +24,7 @@ public class StyleComponents {
     private JTable Table;
     private DefaultTableModel TableModel;
     private JSeparator Separator;
+    private JComboBox<String> ComboBox;
 
     public JPanel Panel() {
         this.Panel = new JPanel();
@@ -116,6 +118,27 @@ public class StyleComponents {
         this.Separator.setBounds(x, y, width, height);
 
         return this.Separator;
+    }
+
+    public JComboBox<String> ComboBox(String[] items, Color background, Color foreground, Border border, int x, int y,
+            int width, int height) {
+        this.ComboBox = new JComboBox<>();
+
+        if (items.length > 0) {
+            for (String item : items) {
+                this.ComboBox.addItem(item);
+            }
+        } else {
+            System.out.println("The ComboBox need al least 1 element");
+        }
+
+        this.ComboBox.setBorder(border);
+        this.ComboBox.setBackground(background);
+        this.ComboBox.setForeground(foreground);
+        this.ComboBox.setFont(new Font("Nunito", Font.PLAIN, 16));
+        this.ComboBox.setBounds(x, y, width, height);
+
+        return this.ComboBox;
     }
 
 }
