@@ -2,6 +2,13 @@ package view;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -16,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import helpers.StyleComponents;
 
-public class ManagementProvidersView extends JDialog {
+public class ManagementProvidersView extends JDialog implements ActionListener, KeyListener, FocusListener {
         private JPanel panel;
         private JButton btnAdd, btnModify, btnRemove, btnSearch, btnClearForm, btnEdit, btnReturn, btnViewProducts;
         private JComboBox<String> cboPerson;
@@ -132,6 +139,45 @@ public class ManagementProvidersView extends JDialog {
                 tModel = new StyleComponents().TableModel(columns);
 
                 // listeners
+                txtCompany.addActionListener(this);
+                cboPerson.addActionListener(this);
+                txtStreet.addActionListener(this);
+                txtExtNum.addActionListener(this);
+                txtIntNum.addActionListener(this);
+                txtDelegation.addActionListener(this);
+                txtCountry.addActionListener(this);
+                txtPhone.addActionListener(this);
+                txtEmail.addActionListener(this);
+                btnAdd.addActionListener(this);
+                btnModify.addActionListener(this);
+                btnClearForm.addActionListener(this);
+                btnReturn.addActionListener(this);
+                txtSearch.addActionListener(this);
+                btnSearch.addActionListener(this);
+                btnRemove.addActionListener(this);
+                btnViewProducts.addActionListener(this);
+                btnEdit.addActionListener(this);
+
+                txtCompany.addKeyListener(this);
+                cboPerson.addActionListener(this);
+                txtStreet.addActionListener(this);
+                txtExtNum.addActionListener(this);
+                txtIntNum.addActionListener(this);
+                txtDelegation.addActionListener(this);
+                txtCountry.addActionListener(this);
+                txtPhone.addActionListener(this);
+                txtEmail.addActionListener(this);
+                btnAdd.addActionListener(this);
+                btnModify.addActionListener(this);
+                btnClearForm.addActionListener(this);
+                btnReturn.addActionListener(this);
+                txtSearch.addActionListener(this);
+                btnSearch.addActionListener(this);
+                btnRemove.addActionListener(this);
+                btnViewProducts.addActionListener(this);
+                btnEdit.addActionListener(this);
+
+                txtSearch.addFocusListener(this);
 
                 // add components at panel
                 panel.add(txtCompany);
@@ -168,6 +214,30 @@ public class ManagementProvidersView extends JDialog {
 
                 // add panel at dialog
                 this.add(panel);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+
+        @Override
+        public void focusGained(FocusEvent e) {
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
         }
 
 }
