@@ -216,8 +216,39 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 this.add(panel);
         }
 
+        private void clearForm() {
+                txtCompany.setText("");
+                cboPerson.setSelectedItem(activity[0]);
+                txtStreet.setText("");
+                txtExtNum.setText("");
+                txtIntNum.setText("");
+                txtDelegation.setText("");
+                txtCountry.setText("");
+                txtPhone.setText("");
+                txtEmail.setText("");
+                btnModify.setEnabled(false);
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btnAdd) {
+
+                } else if (e.getSource() == btnModify) {
+
+                } else if (e.getSource() == btnClearForm) {
+                        this.clearForm();
+                        this.txtCompany.requestFocus();
+                } else if (e.getSource() == btnReturn) {
+
+                } else if (e.getSource() == btnRemove) {
+
+                } else if (e.getSource() == btnViewProducts) {
+
+                } else if (e.getSource() == btnEdit) {
+
+                } else if (e.getSource() == btnSearch) {
+
+                }
         }
 
         @Override
