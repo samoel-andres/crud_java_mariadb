@@ -8,10 +8,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -21,6 +23,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controllers.Controller;
 import helpers.StyleComponents;
 
 public class ManagementProvidersView extends JDialog implements ActionListener, KeyListener, FocusListener {
@@ -211,9 +214,40 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 tScroll.setViewportView(tProvidersList);
 
                 // load data
+                loadProviders();
 
                 // add panel at dialog
                 this.add(panel);
+        }
+
+        private void loadProviders() {
+                // clean the table
+                int x = tModel.getRowCount() - 1;
+                for (int i = x; i >= 0; i--) {
+                        tModel.removeRow(i);
+                }
+
+                // generate rows
+                try {
+                        ResultSet providers = new Controller().readProviders(this.txtCompany.getText());
+                        int rows = 0;
+
+                        while (providers.next()) {
+                                this.row[0] = providers.getString("Provider ID");
+                                this.row[1] = providers.getString("Company name");
+                                this.row[2] = providers.getString("Provider phone");
+                                this.tModel.addRow(row);
+                                rows++;
+                        }
+
+                        if (rows == 0) {
+                                JOptionPane.showMessageDialog(this, "Unregistered provider", "Information",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Data could not be loaded", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
         }
 
         private void clearForm() {
