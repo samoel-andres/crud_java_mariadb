@@ -229,7 +229,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
 
                 // generate rows
                 try {
-                        ResultSet providers = new Controller().readProviders(this.txtCompany.getText());
+                        ResultSet providers = new Controller().readProviders(this.txtCompany.getText(), "");
                         int rows = 0;
 
                         while (providers.next()) {
