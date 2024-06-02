@@ -281,7 +281,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 } else if (e.getSource() == btnEdit) {
 
                 } else if (e.getSource() == btnSearch) {
-
+                        this.loadProviders();
                 }
         }
 
