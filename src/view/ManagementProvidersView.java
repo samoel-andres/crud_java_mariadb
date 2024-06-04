@@ -162,23 +162,23 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 btnEdit.addActionListener(this);
 
                 txtCompany.addKeyListener(this);
-                cboPerson.addActionListener(this);
-                txtStreet.addActionListener(this);
-                txtExtNum.addActionListener(this);
-                txtIntNum.addActionListener(this);
-                txtDelegation.addActionListener(this);
-                txtCountry.addActionListener(this);
-                txtPhone.addActionListener(this);
-                txtEmail.addActionListener(this);
-                btnAdd.addActionListener(this);
-                btnModify.addActionListener(this);
-                btnClearForm.addActionListener(this);
-                btnReturn.addActionListener(this);
-                txtSearch.addActionListener(this);
-                btnSearch.addActionListener(this);
-                btnRemove.addActionListener(this);
-                btnViewProducts.addActionListener(this);
-                btnEdit.addActionListener(this);
+                cboPerson.addKeyListener(this);
+                txtStreet.addKeyListener(this);
+                txtExtNum.addKeyListener(this);
+                txtIntNum.addKeyListener(this);
+                txtDelegation.addKeyListener(this);
+                txtCountry.addKeyListener(this);
+                txtPhone.addKeyListener(this);
+                txtEmail.addKeyListener(this);
+                btnAdd.addKeyListener(this);
+                btnModify.addKeyListener(this);
+                btnClearForm.addKeyListener(this);
+                btnReturn.addKeyListener(this);
+                txtSearch.addKeyListener(this);
+                btnSearch.addKeyListener(this);
+                btnRemove.addKeyListener(this);
+                btnViewProducts.addKeyListener(this);
+                btnEdit.addKeyListener(this);
 
                 txtSearch.addFocusListener(this);
 
