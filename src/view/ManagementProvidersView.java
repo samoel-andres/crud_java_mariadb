@@ -47,6 +47,9 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
         private String[] columns = { "PID", "Company name", "Phone number" };
         private String[] row = new String[columns.length];
 
+        private String PID;
+        private ResultSet providerDetails;
+
         public ManagementProvidersView(MoreView parent, String title, boolean modal) {
                 // window configuration
                 super(parent, title, modal);
@@ -261,6 +264,31 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 txtPhone.setText("");
                 txtEmail.setText("");
                 btnModify.setEnabled(false);
+        }
+
+        private void loadProviderDetails() {
+                try {
+                        providerDetails = new Controller().readProviders("", this.PID);
+
+                        if (providerDetails.next()) {
+                                txtCompany.setText(providerDetails.getString("Company name"));
+                                cboPerson.setSelectedItem(providerDetails.getString("Person"));
+                                txtStreet.setText(providerDetails.getString("Provider street"));
+                                txtExtNum.setText(providerDetails.getString("Provider exterior number"));
+                                txtIntNum.setText(providerDetails.getString("Provider interior number"));
+                                txtDelegation.setText(providerDetails.getString("Provider delegation"));
+                                txtCountry.setText(providerDetails.getString("Provider country"));
+                                txtPhone.setText(providerDetails.getString("Provider phone"));
+                                txtEmail.setText(providerDetails.getString("Provider mail"));
+                                btnModify.setEnabled(true);
+                        } else {
+                                this.clearForm();
+                        }
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        JOptionPane.showMessageDialog(this, "An error ocurred while loading data in the form", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
         }
 
         @Override
