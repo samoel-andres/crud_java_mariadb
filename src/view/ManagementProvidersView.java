@@ -307,7 +307,23 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 } else if (e.getSource() == btnViewProducts) {
 
                 } else if (e.getSource() == btnEdit) {
+                        this.clearForm();
 
+                        int rowSelected = tProvidersList.getSelectedRow();
+
+                        if (rowSelected >= 0) {
+                                try {
+                                        this.PID = (String) tModel.getValueAt(rowSelected, 0);
+                                        this.loadProviderDetails();
+                                } catch (Exception ex) {
+                                        JOptionPane.showMessageDialog(this, "Oops, an unexpected error ocurred",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this,
+                                                "Please, select row from the table for edit the information",
+                                                "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnSearch) {
                         this.loadProviders();
                 }
