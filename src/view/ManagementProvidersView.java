@@ -264,22 +264,24 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 txtPhone.setText("");
                 txtEmail.setText("");
                 btnModify.setEnabled(false);
+                this.PID = null;
+                this.providerDetails = null;
         }
 
         private void loadProviderDetails() {
                 try {
-                        providerDetails = new Controller().readProviders("", this.PID);
+                        this.providerDetails = new Controller().readProviders("", this.PID);
 
                         if (providerDetails.next()) {
-                                txtCompany.setText(providerDetails.getString("Company name"));
-                                cboPerson.setSelectedItem(providerDetails.getString("Person"));
-                                txtStreet.setText(providerDetails.getString("Provider street"));
-                                txtExtNum.setText(providerDetails.getString("Provider exterior number"));
-                                txtIntNum.setText(providerDetails.getString("Provider interior number"));
-                                txtDelegation.setText(providerDetails.getString("Provider delegation"));
-                                txtCountry.setText(providerDetails.getString("Provider country"));
-                                txtPhone.setText(providerDetails.getString("Provider phone"));
-                                txtEmail.setText(providerDetails.getString("Provider mail"));
+                                txtCompany.setText(this.providerDetails.getString("Company name"));
+                                cboPerson.setSelectedItem(this.providerDetails.getString("Person"));
+                                txtStreet.setText(this.providerDetails.getString("Provider street"));
+                                txtExtNum.setText(this.providerDetails.getString("Provider exterior number"));
+                                txtIntNum.setText(this.providerDetails.getString("Provider interior number"));
+                                txtDelegation.setText(this.providerDetails.getString("Provider delegation"));
+                                txtCountry.setText(this.providerDetails.getString("Provider country"));
+                                txtPhone.setText(this.providerDetails.getString("Provider phone"));
+                                txtEmail.setText(this.providerDetails.getString("Provider mail"));
                                 btnModify.setEnabled(true);
                         } else {
                                 this.clearForm();
