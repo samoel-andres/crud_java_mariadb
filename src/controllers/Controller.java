@@ -675,8 +675,9 @@ public class Controller {
             } else {
                 validation = new Validator().VerifyInteger(PID);
 
-                if (validation == "Err" && !PID.isEmpty()) {
+                if (validation != "Err" && !PID.isEmpty()) {
                     by = "PID";
+                    value = PID;
                 }
             }
 
