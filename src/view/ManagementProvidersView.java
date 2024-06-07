@@ -230,6 +230,8 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                         tModel.removeRow(i);
                 }
 
+                this.clearForm();
+
                 // generate rows
                 try {
                         ResultSet providers = new Controller().readProviders(this.txtSearch.getText(), "");
@@ -287,7 +289,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                                 this.clearForm();
                         }
                 } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        this.clearForm();
                         JOptionPane.showMessageDialog(this, "An error ocurred while loading data in the form", "Error",
                                         JOptionPane.ERROR_MESSAGE);
                 }
