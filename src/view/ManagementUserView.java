@@ -239,6 +239,8 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                         tModel.removeRow(i);
                 }
 
+                this.clearForm();
+
                 // generate rows
                 try {
                         ResultSet users = new Controller().readUsers(this.txtSearch.getText(), "");
@@ -276,6 +278,8 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 txtPhone.setText("");
                 txtEmail.setText("");
                 btnModify.setEnabled(false);
+                this.UID = null;
+                this.userDetails = null;
         }
 
         private void loadUserDetails() {

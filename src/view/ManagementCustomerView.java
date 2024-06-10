@@ -239,6 +239,8 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                         tModel.removeRow(i);
                 }
 
+                this.clearForm();
+
                 // generate rows
                 try {
                         ResultSet customers = new Controller().readCustomers(this.txtSearch.getText(), "");
@@ -279,6 +281,8 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                 txtPhone.setText("");
                 txtEmail.setText("");
                 btnModify.setEnabled(false);
+                this.CID = null;
+                this.customerDetails = null;
         }
 
         private void loadCustomerDetails() {
