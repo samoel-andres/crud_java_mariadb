@@ -335,6 +335,9 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
 
         @Override
         public void focusGained(FocusEvent e) {
+                if (e.getSource() == txtSearch) {
+                        this.txtSearch.setText("");
+                }
         }
 
         @Override
