@@ -305,7 +305,8 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                         this.clearForm();
                         this.txtCompany.requestFocus();
                 } else if (e.getSource() == btnReturn) {
-
+                        this.clearForm();
+                        this.setVisible(false);
                 } else if (e.getSource() == btnRemove) {
 
                 } else if (e.getSource() == btnViewProducts) {
@@ -346,6 +347,10 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
 
         @Override
         public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        this.clearForm();
+                        this.setVisible(false);
+                }
         }
 
         @Override
