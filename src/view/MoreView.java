@@ -54,7 +54,6 @@ public class MoreView extends JDialog implements ActionListener, KeyListener {
         // disabled
         btnOrder.setEnabled(false);
         btnStock.setEnabled(false);
-        btnProvider.setEnabled(false);
         btnCheckSales.setEnabled(false);
 
         // listeners
