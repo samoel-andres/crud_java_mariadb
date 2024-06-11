@@ -619,8 +619,9 @@ public class Controller {
             } else {
                 validation = new Validator().VerifyInteger(CID);
 
-                if (validation == "Err" && !CID.isEmpty()) {
+                if (validation != "Err" && !CID.isEmpty()) {
                     by = "CID";
+                    value = CID;
                 }
             }
 
@@ -647,8 +648,9 @@ public class Controller {
             } else {
                 validation = new Validator().VerifyInteger(UID);
 
-                if (validation == "Err" && !UID.isEmpty()) {
+                if (validation != "Err" && !UID.isEmpty()) {
                     by = "UID";
+                    value = UID;
                 }
             }
 
@@ -686,6 +688,10 @@ public class Controller {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return null;
+    }
+
+    public ResultSet readStock() {
         return null;
     }
 
