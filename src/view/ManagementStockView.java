@@ -2,6 +2,14 @@ package view;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 
 import javax.swing.JButton;
@@ -18,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 import helpers.StyleComponents;
 
-public class ManagementStockView extends JDialog {
+public class ManagementStockView extends JDialog implements ActionListener, FocusListener, KeyListener, ItemListener {
         private JPanel panel;
         private JButton btnAdd, btnModify, btnRemove, btnClearForm, btnSearch, btnEdit, btnReturn, btnViewProvider;
         private JTextField txtUnits, txtUnitsByUnitType, txtUnitType, txtTotalUnits, txtPriceByUnitType, txtProductName,
@@ -40,7 +48,8 @@ public class ManagementStockView extends JDialog {
         // data of combobox
         private String[] uTypes = { "Specify the unit type", "Box", "Granel", "Kit", "Lote", "Other" };
         private String[] uSize = { "Specify the unit size", "Small", "Medium", "Big", "Kit", "Other" };
-        private String[][] providesList = { { "Provider a", "Provider b" }, { "0", "1" } };
+        private String[][] providersList = { { "Specify the provider", "Provider a", "Provider b" },
+                        { null, "0", "1" } };
 
         private String SID;
         private ResultSet stockDetails;
@@ -105,7 +114,7 @@ public class ManagementStockView extends JDialog {
                 separatorH2 = new StyleComponents().Separator("horizontal", (width - width + space_between),
                                 (height - height + space_between * 9 + 210), 622, 1);
 
-                cboProvider = new StyleComponents().ComboBox(providesList[0], new Color(255, 255, 255),
+                cboProvider = new StyleComponents().ComboBox(providersList[0], new Color(255, 255, 255),
                                 new Color(0, 0, 0),
                                 null, (width - width + space_between), (height - height + space_between * 10 + 210),
                                 300, 50);
@@ -156,6 +165,55 @@ public class ManagementStockView extends JDialog {
                 tModel = new StyleComponents().TableModel(columns);
 
                 // listeners
+                cboUnitType.addItemListener(this);
+                cboSize.addItemListener(this);
+                cboProvider.addItemListener(this);
+
+                txtUnits.addActionListener(this);
+                cboUnitType.addActionListener(this);
+                txtUnitsByUnitType.addActionListener(this);
+                txtUnitType.addActionListener(this);
+                txtTotalUnits.addActionListener(this);
+                txtPriceByUnitType.addActionListener(this);
+                txtProductName.addActionListener(this);
+                cboSize.addActionListener(this);
+                txtPriceByUnit.addActionListener(this);
+                txtSize.addActionListener(this);
+                cboProvider.addActionListener(this);
+                txtPID.addActionListener(this);
+                btnAdd.addActionListener(this);
+                btnModify.addActionListener(this);
+                btnClearForm.addActionListener(this);
+                btnReturn.addActionListener(this);
+                txtSearch.addActionListener(this);
+                btnSearch.addActionListener(this);
+                btnRemove.addActionListener(this);
+                btnViewProvider.addActionListener(this);
+                btnEdit.addActionListener(this);
+
+                txtUnits.addKeyListener(this);
+                cboUnitType.addKeyListener(this);
+                txtUnitsByUnitType.addKeyListener(this);
+                txtUnitType.addKeyListener(this);
+                txtTotalUnits.addKeyListener(this);
+                txtPriceByUnitType.addKeyListener(this);
+                txtProductName.addKeyListener(this);
+                cboSize.addKeyListener(this);
+                txtPriceByUnit.addKeyListener(this);
+                txtSize.addKeyListener(this);
+                cboProvider.addKeyListener(this);
+                txtPID.addKeyListener(this);
+                btnAdd.addKeyListener(this);
+                btnModify.addKeyListener(this);
+                btnClearForm.addKeyListener(this);
+                btnReturn.addKeyListener(this);
+                txtSearch.addKeyListener(this);
+                btnSearch.addKeyListener(this);
+                btnRemove.addKeyListener(this);
+                btnViewProvider.addKeyListener(this);
+                btnEdit.addKeyListener(this);
+
+                txtSearch.addFocusListener(this);
 
                 // add components at panel
                 panel.add(txtUnits);
@@ -201,6 +259,34 @@ public class ManagementStockView extends JDialog {
 
                 // add panel at dialog
                 this.add(panel);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+
+        @Override
+        public void focusGained(FocusEvent e) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void focusLost(FocusEvent arg0) {
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
         }
 
 }
