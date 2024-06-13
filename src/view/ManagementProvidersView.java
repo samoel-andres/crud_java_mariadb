@@ -121,7 +121,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
 
                 txtSearch = new StyleComponents().Field(new Color(255, 255, 255), new Color(0, 0, 0),
                                 new TitledBorder(new LineBorder(new Color(26, 82, 118)),
-                                                "Enter Name, phone or Email to search"),
+                                                "Enter Name, Phone or E-mail to search"),
                                 (width - width + space_between * 4 + 600), (height - height + space_between), 300, 50);
 
                 btnSearch = new StyleComponents().Button("Search provider", (width - width + space_between * 5 + 900),
