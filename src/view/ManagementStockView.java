@@ -284,7 +284,8 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 } else if (e.getSource() == btnModify) {
 
                 } else if (e.getSource() == btnClearForm) {
-
+                        this.clearForm();
+                        this.txtUnits.requestFocus();
                 } else if (e.getSource() == btnReturn) {
 
                 } else if (e.getSource() == btnRemove) {
