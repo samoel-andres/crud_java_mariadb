@@ -263,6 +263,23 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
         @Override
         public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btnAdd) {
+
+                } else if (e.getSource() == btnModify) {
+
+                } else if (e.getSource() == btnClearForm) {
+
+                } else if (e.getSource() == btnReturn) {
+
+                } else if (e.getSource() == btnRemove) {
+
+                } else if (e.getSource() == btnViewProvider) {
+
+                } else if (e.getSource() == btnEdit) {
+
+                } else if (e.getSource() == btnSearch) {
+
+                }
         }
 
         @Override
@@ -287,6 +304,38 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
         @Override
         public void itemStateChanged(ItemEvent e) {
+                String selected;
+
+                if (e.getSource() == cboUnitType) {
+                        selected = (String) cboUnitType.getSelectedItem();
+                        if (selected != "Other") {
+                                txtUnitType.setText("");
+                                txtUnitType.setVisible(false);
+                        } else {
+                                txtUnitType.setText("");
+                                txtUnitType.setVisible(true);
+                        }
+                } else if (e.getSource() == cboSize) {
+                        selected = (String) cboSize.getSelectedItem();
+                        if (selected != "Other") {
+                                txtSize.setText("");
+                                txtSize.setVisible(false);
+                        } else {
+                                txtSize.setText("");
+                                txtSize.setVisible(true);
+                        }
+                } else if (e.getSource() == cboProvider) {
+                        selected = (String) cboProvider.getSelectedItem();
+                        int index;
+
+                        for (index = 0; index < providersList[0].length; index++) {
+                                if (providersList[0][index] == selected) {
+                                        break;
+                                }
+                        }
+
+                        txtPID.setText(String.valueOf(index));
+                }
         }
 
 }
