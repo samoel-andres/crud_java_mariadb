@@ -281,6 +281,8 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                                 this.row[0] = stock.getString("SID");
                                 this.row[1] = stock.getString("Product name");
                                 this.row[2] = stock.getString("Total units") + " units";
+                                this.tModel.addRow(row);
+                                rows++;
                         }
 
                         if (rows == 0) {
