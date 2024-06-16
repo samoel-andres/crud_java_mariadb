@@ -258,6 +258,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 tScroll.setViewportView(tStockList);
 
                 // load data
+                loadStock();
 
                 // add panel at dialog
                 this.add(panel);
