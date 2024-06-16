@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -24,6 +25,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controllers.Controller;
 import helpers.StyleComponents;
 
 public class ManagementStockView extends JDialog implements ActionListener, FocusListener, KeyListener, ItemListener {
@@ -259,6 +261,36 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
                 // add panel at dialog
                 this.add(panel);
+        }
+
+        private void loadStock() {
+                // clean the table
+                int x = tModel.getRowCount() - 1;
+                for (int i = x; i >= 0; i--) {
+                        tModel.removeRow(i);
+                }
+
+                this.clearForm();
+
+                // generate rows
+                try {
+                        ResultSet stock = new Controller().readStock(this.txtSearch.getText(), "");
+                        int rows = 0;
+
+                        while (stock.next()) {
+                                this.row[0] = stock.getString("SID");
+                                this.row[1] = stock.getString("Product name");
+                                this.row[2] = stock.getString("Total units") + " units";
+                        }
+
+                        if (rows == 0) {
+                                JOptionPane.showMessageDialog(this, "Unregistered stock", "Information",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Data could not be loaded", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
         }
 
         private void clearForm() {
