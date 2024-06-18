@@ -691,7 +691,32 @@ public class Controller {
         return null;
     }
 
-    public ResultSet readStock() {
+    public ResultSet readStock(String value, String SID) {
+        try {
+            String validation = new Validator().VerifyString(value.toUpperCase());
+            String by = "all";
+
+            if (SID.isEmpty()) {
+                if (validation != "Err" && !value.isEmpty()) {
+                    by = "find";
+                } else {
+                    by = "all";
+                }
+            } else {
+                validation = new Validator().VerifyInteger(SID);
+
+                if (validation != "Err" && !SID.isEmpty()) {
+                    by = "SID";
+                    value = SID;
+                }
+            }
+
+            return new StockController(0, null, 0, 0, 0, new BigDecimal(0))
+                    .read(by, value.toUpperCase());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         return null;
     }
 
