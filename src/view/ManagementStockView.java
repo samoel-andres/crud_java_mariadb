@@ -50,7 +50,8 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
         // data of combobox
         private String[] uTypes = { "Specify the unit type", "Box", "Granel", "Kit", "Lote", "Other" };
         private String[] uSize = { "Specify the unit size", "Small", "Medium", "Big", "Kit", "Other" };
-        private String[][] providersList = { { "Specify the provider", "Provider a", "Provider b" },
+        private String[][] providersList = { { "Specify the provider", "Provider a",
+                        "Provider b" },
                         { null, "0", "1" } };
 
         private String SID;
@@ -262,6 +263,51 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
                 // add panel at dialog
                 this.add(panel);
+        }
+
+        private String[][] getProviders() {
+                try {
+                        ResultSet providers = new Controller().readProviders("", "");
+                        int rows = 0;
+
+                        // count rows
+                        while (providers.next()) {
+                                rows++;
+                        }
+
+                        providers.beforeFirst();
+
+                        // initialize array
+                        String[][] list = new String[rows + 1][2];
+
+                        // fill data
+                        int i = 0;
+                        int j = 0;
+                        list[i][j] = "Specify the provider";
+                        j++;
+                        list[i][j] = null;
+                        i++;
+                        j--;
+                        while (providers.next()) {
+                                list[i][j] = providers.getString("Company name");
+                                j++;
+                                list[i][j] = providers.getString("Provider ID");
+                                i++;
+                                j--;
+                        }
+
+                        if (rows == 0) {
+                                JOptionPane.showMessageDialog(this, "Unregistered provider", "Information",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
+
+                        return list;
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        JOptionPane.showMessageDialog(this, "The providers could not be loaded", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
+                return null;
         }
 
         private void loadStock() {
