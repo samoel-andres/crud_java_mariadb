@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,9 +51,8 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
         // data of combobox
         private String[] uTypes = { "Specify the unit type", "Box", "Granel", "Kit", "Lote", "Other" };
         private String[] uSize = { "Specify the unit size", "Small", "Medium", "Big", "Kit", "Other" };
-        private String[][] providersList = { { "Specify the provider", "Provider a",
-                        "Provider b" },
-                        { null, "0", "1" } };
+        private String[][] providersList = getProviders();
+        private String[] list = getList();
 
         private String SID;
         private ResultSet stockDetails;
@@ -117,10 +117,8 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 separatorH2 = new StyleComponents().Separator("horizontal", (width - width + space_between),
                                 (height - height + space_between * 9 + 210), 622, 1);
 
-                cboProvider = new StyleComponents().ComboBox(providersList[0], new Color(255, 255, 255),
-                                new Color(0, 0, 0),
-                                null, (width - width + space_between), (height - height + space_between * 10 + 210),
-                                300, 50);
+                cboProvider = new StyleComponents().ComboBox(list, new Color(255, 255, 255), new Color(0, 0, 0), null,
+                                (width - width + space_between), (height - height + space_between * 10 + 210), 300, 50);
 
                 txtPID = new StyleComponents().Field(new Color(255, 255, 255), new Color(0, 0, 0),
                                 new TitledBorder(new LineBorder(new Color(26, 82, 118)), "This is the provider ID"),
@@ -310,6 +308,14 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 return null;
         }
 
+        private String[] getList() {
+                list = new String[providersList.length];
+                for (int i = 0; i < providersList.length; i++) {
+                        list[i] = providersList[i][0];
+                }
+                return list;
+        }
+
         private void loadStock() {
                 // clean the table
                 int x = tModel.getRowCount() - 1;
@@ -424,15 +430,23 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                         }
                 } else if (e.getSource() == cboProvider) {
                         selected = (String) cboProvider.getSelectedItem();
+                        String PID = null;
                         int index;
 
-                        for (index = 0; index < providersList[0].length; index++) {
-                                if (providersList[0][index] == selected) {
-                                        break;
-                                }
-                        }
+                        // for (index = 0; index < providersList[0].length; index++) {
+                        // if (providersList[0][index] == selected) {
+                        // System.out.println(providersList[0][index]);
+                        // break;
+                        // }
+                        // }
 
-                        txtPID.setText(String.valueOf(index));
+                        // for (int i = 0; i < providersList.length; i++) {
+                        // for (int j = 0; j < providersList.length; j++) {
+                        // System.out.println(providersList[i][j]);
+                        // }
+                        // }
+
+                        txtPID.setText(PID);
                 }
         }
 
