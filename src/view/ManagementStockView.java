@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -143,7 +141,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
                 txtSearch = new StyleComponents().Field(new Color(255, 255, 255), new Color(0, 0, 0),
                                 new TitledBorder(new LineBorder(new Color(26, 82, 118)),
-                                                "Enter Product name, provider or SID to search"),
+                                                "Enter Product name, provider or PRID to search"),
                                 (width - width + space_between * 4 + 600), (height - height + space_between), 300, 50);
 
                 btnSearch = new StyleComponents().Button("Search stock", (width - width + space_between * 5 + 900),
@@ -332,7 +330,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                         int rows = 0;
 
                         while (stock.next()) {
-                                this.row[0] = stock.getString("SID");
+                                this.row[0] = stock.getString("PRID");
                                 this.row[1] = stock.getString("Product name");
                                 this.row[2] = stock.getString("Total units") + " units";
                                 this.tModel.addRow(row);
