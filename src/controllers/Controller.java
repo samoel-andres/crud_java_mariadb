@@ -706,7 +706,7 @@ public class Controller {
                 validation = new Validator().VerifyInteger(SID);
 
                 if (validation != "Err" && !SID.isEmpty()) {
-                    by = "SID";
+                    by = "PRID";
                     value = SID;
                 }
             }
