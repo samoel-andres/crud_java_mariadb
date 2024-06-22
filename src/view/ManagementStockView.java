@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -374,7 +375,8 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                         this.clearForm();
                         this.txtUnits.requestFocus();
                 } else if (e.getSource() == btnReturn) {
-
+                        this.clearForm();
+                        this.setVisible(false);
                 } else if (e.getSource() == btnRemove) {
 
                 } else if (e.getSource() == btnViewProvider) {
@@ -388,10 +390,15 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
         @Override
         public void focusGained(FocusEvent e) {
+
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        this.clearForm();
+                        this.setVisible(false);
+                }
         }
 
         @Override
