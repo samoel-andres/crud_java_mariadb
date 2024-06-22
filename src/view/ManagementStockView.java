@@ -390,7 +390,9 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
         @Override
         public void focusGained(FocusEvent e) {
-
+                if (e.getSource() == txtSearch) {
+                        this.txtSearch.setText("");
+                }
         }
 
         @Override
