@@ -431,20 +431,13 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 } else if (e.getSource() == cboProvider) {
                         selected = (String) cboProvider.getSelectedItem();
                         String PID = null;
-                        int index;
 
-                        // for (index = 0; index < providersList[0].length; index++) {
-                        // if (providersList[0][index] == selected) {
-                        // System.out.println(providersList[0][index]);
-                        // break;
-                        // }
-                        // }
-
-                        // for (int i = 0; i < providersList.length; i++) {
-                        // for (int j = 0; j < providersList.length; j++) {
-                        // System.out.println(providersList[i][j]);
-                        // }
-                        // }
+                        for (int i = 0; i < providersList.length; i++) {
+                                if (providersList[i][0] == selected) {
+                                        PID = providersList[i][1];
+                                        break;
+                                }
+                        }
 
                         txtPID.setText(PID);
                 }
