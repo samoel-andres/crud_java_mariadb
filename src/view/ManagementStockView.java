@@ -347,6 +347,66 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 }
         }
 
+        private void loadStockDetails() {
+                try {
+                        this.stockDetails = new Controller().readStock("", this.SID);
+
+                        if (stockDetails.next()) {
+                                this.txtUnits.setText(this.stockDetails.getString("Units"));
+                                for (int index = 0; index < uTypes.length; index++) {
+                                        if (uTypes[index].equalsIgnoreCase(this.stockDetails.getString("Unit type"))) {
+                                                cboUnitType.setSelectedItem(uTypes[index]);
+                                                this.txtUnitType.setVisible(false);
+                                                break;
+                                        } else {
+                                                cboUnitType.setSelectedItem(uTypes[index]);
+                                                this.txtUnitType.setText(this.stockDetails.getString("Unit type"));
+                                                this.txtUnitType.setVisible(true);
+
+                                        }
+                                }
+                                this.txtUnitsByUnitType.setText(this.stockDetails.getString("Content by unit"));
+                                this.txtTotalUnits.setText(this.stockDetails.getString("Total units"));
+                                this.txtPriceByUnitType.setText(this.stockDetails.getString("Price by unit"));
+                                this.txtProductName.setText(this.stockDetails.getString("Product name"));
+                                for (int index = 0; index < uSize.length; index++) {
+                                        if (uSize[index].equalsIgnoreCase(
+                                                        this.stockDetails.getString("Product size"))) {
+                                                this.cboSize.setSelectedItem(uSize[index]);
+                                                this.txtSize.setVisible(false);
+                                                break;
+                                        } else {
+                                                this.cboSize.setSelectedItem(uSize[index]);
+                                                this.txtSize.setText(this.stockDetails.getString("Product size"));
+                                                this.txtSize.setVisible(true);
+
+                                        }
+                                }
+                                this.txtPriceByUnit.setText(this.stockDetails.getString("Product price"));
+
+                                String tmpPID = this.stockDetails.getString("PID");
+                                int index;
+                                for (index = 0; index < providersList.length; index++) {
+                                        if (providersList[index][1] != null) {
+                                                if (providersList[index][1].equalsIgnoreCase(tmpPID)) {
+                                                        this.cboProvider.setSelectedItem(list[index]);
+                                                        this.txtPID.setText(providersList[index][1]);
+                                                }
+                                        }
+
+                                }
+                                btnModify.setEnabled(true);
+                        } else {
+                                this.clearForm();
+                        }
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        this.clearForm();
+                        JOptionPane.showMessageDialog(this, "An error ocurred while loading data in the form", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
+        }
+
         private void clearForm() {
                 txtUnits.setText("");
                 txtUnitsByUnitType.setText("");
