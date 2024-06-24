@@ -100,7 +100,8 @@ public class MoreView extends JDialog implements ActionListener, KeyListener {
             ManagementProvidersView mpv = new ManagementProvidersView(this, "Providers management", true);
             mpv.setVisible(true);
         } else if (e.getSource() == btnStock) {
-            // disabled
+            ManagementStockView msv = new ManagementStockView(this, "Management stock", true);
+            msv.setVisible(true);
         } else if (e.getSource() == btnUser) {
             ManagementUserView muv = new ManagementUserView(this, "Users management", true);
             muv.setVisible(true);
