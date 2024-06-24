@@ -440,7 +440,23 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 } else if (e.getSource() == btnViewProvider) {
 
                 } else if (e.getSource() == btnEdit) {
+                        this.clearForm();
 
+                        int rowSelected = tStockList.getSelectedRow();
+
+                        if (rowSelected >= 0) {
+                                try {
+                                        this.SID = (String) tModel.getValueAt(rowSelected, 0);
+                                        this.loadStockDetails();
+                                } catch (Exception ex) {
+                                        JOptionPane.showMessageDialog(this, "Oops, an unexpected error ocurred",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this,
+                                                "Please, select row from the table to edit the information",
+                                                "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnSearch) {
 
                 }
