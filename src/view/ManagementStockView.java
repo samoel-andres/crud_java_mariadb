@@ -459,7 +459,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                                                 "Information", JOptionPane.INFORMATION_MESSAGE);
                         }
                 } else if (e.getSource() == btnSearch) {
-
+                        this.loadStock();
                 }
         }
 
