@@ -691,23 +691,23 @@ public class Controller {
         return null;
     }
 
-    public ResultSet readStock(String value, String SID) {
+    public ResultSet readStock(String value, String PRID) {
         try {
             String validation = new Validator().VerifyString(value.toUpperCase());
             String by = "all";
 
-            if (SID.isEmpty()) {
+            if (PRID.isEmpty()) {
                 if (validation != "Err" && !value.isEmpty()) {
                     by = "find";
                 } else {
                     by = "all";
                 }
             } else {
-                validation = new Validator().VerifyInteger(SID);
+                validation = new Validator().VerifyInteger(PRID);
 
-                if (validation != "Err" && !SID.isEmpty()) {
+                if (validation != "Err" && !PRID.isEmpty()) {
                     by = "PRID";
-                    value = SID;
+                    value = PRID;
                 }
             }
 
