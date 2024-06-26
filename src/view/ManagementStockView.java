@@ -417,10 +417,11 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 txtSize.setText("");
                 txtPriceByUnit.setText("");
                 txtPID.setText("");
-                txtSearch.setText("");
                 cboUnitType.setSelectedItem(uTypes[0]);
                 cboSize.setSelectedItem(uSize[0]);
                 cboProvider.setSelectedItem(providersList[0][0]);
+                this.stockDetails = null;
+                this.SID = null;
         }
 
         @Override
