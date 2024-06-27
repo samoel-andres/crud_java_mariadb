@@ -422,6 +422,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 cboProvider.setSelectedItem(providersList[0][0]);
                 this.stockDetails = null;
                 this.SID = null;
+                btnModify.setEnabled(false);
         }
 
         @Override
