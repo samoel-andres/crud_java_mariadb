@@ -13,12 +13,13 @@ import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controllers.Controller;
@@ -27,7 +28,6 @@ import helpers.Validator;
 
 public class HomeView extends JFrame implements ActionListener, FocusListener, KeyListener {
         private JPanel panel;
-        private JLabel lblProductKey;
         private JTextField txtProductKey, txtSubtotal;
         private JButton btnAddCart, btnQuoteProduct, btnMore, btnCancelSale, btnPurchase;
         private JScrollPane tScroll;
@@ -53,12 +53,10 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                 // create components
                 panel = new StyleComponents().Panel();
 
-                lblProductKey = new StyleComponents().Label("Enter product key", (width - width + space_between),
-                                (height - height + space_between), 300, 20);
-
-                txtProductKey = new StyleComponents().Field(new Color(0, 0, 0), new Color(0, 255, 0), null,
-                                (width - width + space_between), (height - height + space_between * 2 + 20),
-                                300, 40);
+                txtProductKey = new StyleComponents().Field(new Color(255, 255, 255), new Color(0, 0, 0),
+                                new TitledBorder(new LineBorder(new Color(20, 82, 118)), "Enter PID or Name"),
+                                (width - width + space_between), (height - height + space_between * 2 + 12),
+                                300, 50);
 
                 btnAddCart = new StyleComponents().Button("Add to cart", (width - width + space_between * 2 + 300),
                                 (height - height + space_between * 2 + 20), 150, 40);
@@ -106,7 +104,6 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                 txtProductKey.addFocusListener(this);
 
                 // add components at panel
-                panel.add(lblProductKey);
                 panel.add(txtProductKey);
                 panel.add(btnAddCart);
                 panel.add(btnQuoteProduct);
