@@ -219,7 +219,7 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                 panel.add(btnEdit);
 
                 // disabled by default
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
 
                 // prepare table
                 tCustomersList.setModel(tModel);
@@ -280,7 +280,7 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                 txtCountry.setText("");
                 txtPhone.setText("");
                 txtEmail.setText("");
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
                 this.CID = null;
                 this.customerDetails = null;
         }
@@ -301,7 +301,7 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                                 txtCountry.setText(customerDetails.getString("Customer country"));
                                 txtPhone.setText(customerDetails.getString("Customer phone"));
                                 txtEmail.setText(customerDetails.getString("Customer mail"));
-                                btnModify.setEnabled(true);
+                                btnModify.setVisible(true);
                         } else {
                                 this.clearForm();
                         }
