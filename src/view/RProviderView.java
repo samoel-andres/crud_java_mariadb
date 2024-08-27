@@ -8,16 +8,19 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import controllers.Controller;
 import helpers.StyleComponents;
 
 public class RProviderView extends JDialog implements ActionListener, KeyListener, FocusListener {
@@ -33,7 +36,11 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
 
         private String[] activity = { "Business activity", "Legal entity", "Physics person" };
 
-        public RProviderView(ManagementStockView parent, String title, boolean modal, String PID) {
+        private String PID;
+        private ResultSet providerDetails;
+        private ResultSet stockDetails;
+
+        public RProviderView(ManagementStockView parent, String title, boolean modal, String SID) {
                 // window configuration
                 super(parent, title, modal);
                 this.setLocationRelativeTo(parent);
@@ -139,6 +146,7 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
                 txtEmail.setEditable(false);
 
                 // load data
+                loadProviderDetails(SID);
 
                 // add panel at dialog
                 this.add(panel);
@@ -154,10 +162,46 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
                 txtCountry.setText("");
                 txtPhone.setText("");
                 txtEmail.setText("");
+                this.providerDetails = null;
+        }
+
+        private void loadProviderDetails(String SID) {
+                try {
+                        this.stockDetails = new Controller().readStock("", SID);
+
+                        if (stockDetails.next()) {
+                                this.PID = this.stockDetails.getString("PID");
+                        }
+
+                        this.providerDetails = new Controller().readProviders("", this.PID);
+
+                        if (providerDetails.next()) {
+                                txtCompany.setText(this.providerDetails.getString("Company name"));
+                                cboPerson.setSelectedItem(this.providerDetails.getString("Person"));
+                                txtStreet.setText(this.providerDetails.getString("Provider street"));
+                                txtExtNum.setText(this.providerDetails.getString("Provider exterior number"));
+                                txtIntNum.setText(this.providerDetails.getString("Provider interior number"));
+                                txtDelegation.setText(this.providerDetails.getString("Provider delegation"));
+                                txtCountry.setText(this.providerDetails.getString("Provider country"));
+                                txtPhone.setText(this.providerDetails.getString("Provider phone"));
+                                txtEmail.setText(this.providerDetails.getString("Provider mail"));
+                        } else {
+                                this.clearForm();
+                        }
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        this.clearForm();
+                        JOptionPane.showMessageDialog(this, "An error ocurred while loading data in the form", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btnReturn) {
+                        this.clearForm();
+                        this.setVisible(false);
+                }
         }
 
         @Override
