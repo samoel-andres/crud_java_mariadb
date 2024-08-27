@@ -210,7 +210,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 panel.add(btnEdit);
 
                 // disabled by default
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
 
                 // prepare table
                 tProvidersList.setModel(tModel);
@@ -265,7 +265,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 txtCountry.setText("");
                 txtPhone.setText("");
                 txtEmail.setText("");
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
                 this.PID = null;
                 this.providerDetails = null;
         }
@@ -284,7 +284,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                                 txtCountry.setText(this.providerDetails.getString("Provider country"));
                                 txtPhone.setText(this.providerDetails.getString("Provider phone"));
                                 txtEmail.setText(this.providerDetails.getString("Provider mail"));
-                                btnModify.setEnabled(true);
+                                btnModify.setVisible(true);
                         } else {
                                 this.clearForm();
                         }
