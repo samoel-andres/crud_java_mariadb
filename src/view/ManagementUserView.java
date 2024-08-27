@@ -219,7 +219,7 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 panel.add(btnEdit);
 
                 // disabled by default
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
 
                 // prepare table
                 tUsersList.setModel(tModel);
@@ -277,7 +277,7 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 txtCountry.setText("");
                 txtPhone.setText("");
                 txtEmail.setText("");
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
                 this.UID = null;
                 this.userDetails = null;
         }
@@ -298,7 +298,7 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                                 txtCountry.setText(userDetails.getString("User country"));
                                 txtPhone.setText(userDetails.getString("User phone"));
                                 txtEmail.setText(userDetails.getString("User mail"));
-                                btnModify.setEnabled(true);
+                                btnModify.setVisible(true);
                         } else {
                                 this.clearForm();
                         }
