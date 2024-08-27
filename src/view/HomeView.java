@@ -55,22 +55,22 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
 
                 txtProductKey = new StyleComponents().Field(new Color(255, 255, 255), new Color(0, 0, 0),
                                 new TitledBorder(new LineBorder(new Color(20, 82, 118)), "Enter PID or Name"),
-                                (width - width + space_between), (height - height + space_between * 2 + 12),
+                                (width - width + space_between), (height - height + space_between),
                                 300, 50);
 
                 btnAddCart = new StyleComponents().Button("Add to cart", (width - width + space_between * 2 + 300),
-                                (height - height + space_between * 2 + 20), 150, 40);
+                                (height - height + space_between + 9), 150, 40);
 
                 btnQuoteProduct = new StyleComponents().Button("Search product",
-                                (width - width + space_between * 3 + 450), (height - height + space_between * 2 + 20),
+                                (width - width + space_between * 3 + 450), (height - height + space_between + 9),
                                 150, 40);
 
                 btnMore = new StyleComponents().Button("More", (width - width + space_between * 4 + 600),
-                                (height - height + space_between * 2 + 20), 150, 40);
+                                (height - height + space_between + 9), 150, 40);
 
                 tScroll = new StyleComponents().ScrollPane((width - width + space_between),
-                                (height - height + space_between * 3 + 60), (width - space_between * 3),
-                                (height - 220));
+                                (height - height + space_between * 4 + 10), (width - space_between * 3),
+                                (height - 190));
 
                 txtSubtotal = new StyleComponents().Field(new Color(0, 0, 0), new Color(0, 255, 0), null,
                                 (width - width + space_between), (height - space_between * 4), 300, 40);
