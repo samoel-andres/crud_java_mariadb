@@ -29,7 +29,7 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
 
         private int space_between = 20;
         private int width = 680;
-        private int height = Toolkit.getDefaultToolkit().getScreenSize().height - 100;
+        private int height = Toolkit.getDefaultToolkit().getScreenSize().height - 150;
 
         private String[] activity = { "Business activity", "Legal entity", "Physics person" };
 
@@ -37,7 +37,7 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
                 // window configuration
                 super(parent, title, modal);
                 this.setLocationRelativeTo(parent);
-                this.setBounds(325, 32, width, height);
+                this.setBounds(325, 57, width, height);
 
                 // create components
                 panel = new StyleComponents().Panel();
@@ -87,8 +87,8 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
                                 (width - width + space_between * 2 + 300), (height - height + space_between * 17 - 10),
                                 300, 50);
 
-                btnReturn = new StyleComponents().Button("Back", (width - width + space_between * 3 + 384),
-                                (height - height + space_between * 12 + 300), 192, 40);
+                btnReturn = new StyleComponents().Button("Back", (width - width + space_between * 3 + 172),
+                                (height - height + space_between * 13 + 250), 192, 40);
 
                 // listeners
                 txtCompany.addActionListener(this);
@@ -130,7 +130,6 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
                 // disabled by default
                 txtCompany.setEditable(false);
                 cboPerson.setEditable(false);
-                cboPerson.setEnabled(false);
                 txtStreet.setEditable(false);
                 txtExtNum.setEditable(false);
                 txtIntNum.setEditable(false);
