@@ -249,7 +249,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 // disabled by default
                 txtUnitType.setVisible(false);
                 txtSize.setVisible(false);
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
 
                 // prepare table
                 tStockList.setModel(tModel);
@@ -395,7 +395,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                                         }
 
                                 }
-                                btnModify.setEnabled(true);
+                                btnModify.setVisible(true);
                         } else {
                                 this.clearForm();
                         }
@@ -422,7 +422,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 cboProvider.setSelectedItem(providersList[0][0]);
                 this.stockDetails = null;
                 this.SID = null;
-                btnModify.setEnabled(false);
+                btnModify.setVisible(false);
         }
 
         @Override
