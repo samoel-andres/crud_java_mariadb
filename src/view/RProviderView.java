@@ -145,6 +145,18 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
                 this.add(panel);
         }
 
+        private void clearForm() {
+                txtCompany.setText("");
+                cboPerson.setSelectedItem(activity[0]);
+                txtStreet.setText("");
+                txtExtNum.setText("");
+                txtIntNum.setText("");
+                txtDelegation.setText("");
+                txtCountry.setText("");
+                txtPhone.setText("");
+                txtEmail.setText("");
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
         }
@@ -159,6 +171,10 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
 
         @Override
         public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        this.clearForm();
+                        this.setVisible(false);
+                }
         }
 
         @Override
