@@ -310,7 +310,23 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 } else if (e.getSource() == btnRemove) {
 
                 } else if (e.getSource() == btnViewProducts) {
+                        int rowSelected = tProvidersList.getSelectedRow();
 
+                        if (rowSelected >= 0) {
+                                try {
+                                        this.PID = (String) tModel.getValueAt(rowSelected, 0);
+                                        ProductsView pv = new ProductsView(null, "Products", true, true, true, false,
+                                                        "providers", this.PID);
+                                        pv.setVisible(true);
+                                } catch (Exception ex) {
+                                        JOptionPane.showMessageDialog(this, "Oops, an unexpected error ocurred",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this,
+                                                "Please, select row from the table to edit the information",
+                                                "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnEdit) {
                         this.clearForm();
 
