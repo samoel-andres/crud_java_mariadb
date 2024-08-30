@@ -294,7 +294,8 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         this.addToSaleLlist();
                         this.calculateTotalPurchase();
                 } else if (e.getSource() == btnQuoteProduct) {
-                        ProductsView spv = new ProductsView(this, "Search product(s)", true, true, true, false);
+                        ProductsView spv = new ProductsView(this, "Search product(s)", true, true, true, false, "home",
+                                        null);
                         spv.setVisible(true);
                 } else if (e.getSource() == btnMore) {
                         MoreView mv = new MoreView(this, "More actions", true);
@@ -320,7 +321,8 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         this.addToSaleLlist();
                         this.calculateTotalPurchase();
                 } else if (e.getKeyCode() == KeyEvent.VK_F1) {
-                        ProductsView spv = new ProductsView(this, "Search product(s)", true, true, true, false);
+                        ProductsView spv = new ProductsView(this, "Search product(s)", true, true, true, false, "home",
+                                        null);
                         spv.setVisible(true);
                 } else if (e.getKeyCode() == KeyEvent.VK_F5) {
                         this.txtProductKey.requestFocus();
