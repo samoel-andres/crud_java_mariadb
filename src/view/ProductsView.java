@@ -39,7 +39,7 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
     private String[] row = new String[columns.length];
 
     public ProductsView(HomeView parent, String title, boolean modal, boolean showProductKey, boolean showBtnSearch,
-            boolean showBtnModify, String commingFrom, String PID) {
+            boolean showBtnModify, String comingFrom, String PID) {
         // window configuration
         super(parent, title, modal);
         this.setLocationRelativeTo(parent);
