@@ -38,12 +38,19 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
             "Stock ID", "Provider name" };
     private String[] row = new String[columns.length];
 
+    private String comingFrom;
+    private String PID;
+
     public ProductsView(HomeView parent, String title, boolean modal, boolean showProductKey, boolean showBtnSearch,
             boolean showBtnModify, String comingFrom, String PID) {
         // window configuration
         super(parent, title, modal);
         this.setLocationRelativeTo(parent);
         this.setBounds(50, 32, width, height);
+
+        // initialize variables
+        this.comingFrom = comingFrom;
+        this.PID = PID;
 
         // create components
         panel = new StyleComponents().Panel();
