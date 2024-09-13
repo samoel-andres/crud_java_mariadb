@@ -56,6 +56,10 @@ public class ProductController extends ProductModel implements Key {
             } else if (by == "all") {
                 statement = connection.prepareStatement(
                         "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', stock.total_units AS 'In stock', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider");
+            } else if (by == "PID") {
+                statement = connection.prepareStatement(
+                        "SELECT products.pk_product AS 'Product ID', products.name AS 'Product name', products.size AS 'Product size', products.price AS 'Product price', stock.total_units AS 'In stock', stock.providers_pk_provider AS 'PID', products.stock_id_stock AS 'Stock ID', providers.company_name AS 'Provider name' FROM products INNER JOIN stock ON products.stock_id_stock = stock.id_stock INNER JOIN providers ON stock.providers_pk_provider = providers.pk_provider WHERE stock.providers_pk_provider = ?");
+                statement.setString(1, value);
             }
 
             ResultSet rs = statement.executeQuery();
