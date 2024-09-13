@@ -151,7 +151,7 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         String product = this.txtProductKey.getText();
 
                         if (!product.isEmpty()) {
-                                ResultSet item = new Controller().readProducts(product);
+                                ResultSet item = new Controller().readProducts(product, null);
                                 int rows = 0;
 
                                 while (item.next()) {
