@@ -586,15 +586,20 @@ public class Controller {
         return "general_err";
     }
 
-    public ResultSet readProducts(String value) {
+    public ResultSet readProducts(String value, String comingFrom) {
         try {
             String validation = new Validator().VerifyInteger(value);
             String by = "all";
-
-            if (validation == "Err" && !value.isEmpty()) {
-                by = "product-name";
-            } else if (validation.equals(value)) {
-                by = "product-key";
+            if (comingFrom != null) {
+                if (comingFrom.equals("providers")) {
+                    by = "PID";
+                }
+            } else {
+                if (validation == "Err" && !value.isEmpty()) {
+                    by = "product-name";
+                } else if (validation.equals(value)) {
+                    by = "product-key";
+                }
             }
 
             return new ProductController(this.product_name, this.size, 0, new BigDecimal(0))
