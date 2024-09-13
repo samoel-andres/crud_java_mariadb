@@ -119,7 +119,14 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
 
         // generate rows
         try {
-            ResultSet products = new Controller().readProducts(this.txtProductKey.getText());
+            ResultSet products = null;
+
+            if (this.comingFrom.equals("providers")) {
+                products = new Controller().readProducts(this.PID, this.comingFrom);
+            } else {
+                products = new Controller().readProducts(this.txtProductKey.getText(), null);
+            }
+
             int rows = 0;
 
             while (products.next()) {
