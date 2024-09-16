@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controllers.Controller;
@@ -55,11 +57,12 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
         // create components
         panel = new StyleComponents().Panel();
 
-        txtProductKey = new StyleComponents().Field(new Color(0, 0, 0), new Color(0, 255, 0), null,
-                (width - width + space_between), (height - height + space_between), 300, 40);
+        txtProductKey = new StyleComponents().Field(new Color(255, 255, 255), new Color(0, 0, 0),
+                new TitledBorder(new LineBorder(new Color(26, 82, 118)), "Emter PID or product name"),
+                (width - width + space_between), (height - height + space_between - 2), 300, 50);
 
         btnSearch = new StyleComponents().Button("Search", (width - width + space_between * 2 + 300),
-                (height - height + space_between), 150, 40);
+                (height - height + space_between + 6), 150, 40);
 
         btnModify = new StyleComponents().Button("Modify product", (width - space_between * 2 - 150),
                 (height - height + space_between), 150, 40);
