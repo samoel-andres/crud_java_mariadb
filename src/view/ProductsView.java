@@ -35,7 +35,7 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
     private int space_between = 20;
     private int width = Toolkit.getDefaultToolkit().getScreenSize().width - 100;
     private int height = Toolkit.getDefaultToolkit().getScreenSize().height - 100;
-    private int y = 50;
+    private int y = 32;
 
     private String[] columns = { "Product ID", "Product name", "Product size", "Product price", "Units in stock",
             "Stock ID", "Provider name" };
