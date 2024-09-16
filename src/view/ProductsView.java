@@ -35,6 +35,7 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
     private int space_between = 20;
     private int width = Toolkit.getDefaultToolkit().getScreenSize().width - 100;
     private int height = Toolkit.getDefaultToolkit().getScreenSize().height - 100;
+    private int y = 50;
 
     private String[] columns = { "Product ID", "Product name", "Product size", "Product price", "Units in stock",
             "Stock ID", "Provider name" };
@@ -45,14 +46,22 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
 
     public ProductsView(HomeView parent, String title, boolean modal, boolean showProductKey, boolean showBtnSearch,
             boolean showBtnModify, String comingFrom, String PID) {
+
         // window configuration
         super(parent, title, modal);
         this.setLocationRelativeTo(parent);
-        this.setBounds(50, 32, width, height);
 
         // initialize variables
         this.comingFrom = comingFrom;
         this.PID = PID;
+
+        // define window height and vertical position
+        if (this.comingFrom.equals("providers")) {
+            this.height = this.height - 75;
+            this.y = 70;
+        }
+
+        this.setBounds(50, this.y, this.width, this.height);
 
         // create components
         panel = new StyleComponents().Panel();
