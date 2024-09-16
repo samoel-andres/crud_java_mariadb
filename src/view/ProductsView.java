@@ -122,6 +122,9 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
             ResultSet products = null;
 
             if (this.comingFrom.equals("providers")) {
+                this.txtProductKey.setVisible(false);
+                this.btnSearch.setVisible(false);
+
                 products = new Controller().readProducts(this.PID, this.comingFrom);
             } else {
                 products = new Controller().readProducts(this.txtProductKey.getText(), null);
