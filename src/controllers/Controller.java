@@ -7,15 +7,15 @@ import helpers.GenerateCoupon;
 import helpers.Validator;
 
 public class Controller {
-    // private String[] actions = { "users.update", "customers.update",
-    // "providers.update", "stock.update",
-    // "products.update", "sales.update", "coupons.update", "orders.update" };
     private String phone_number, email, street, ext_num, int_num, delegation, country, name, lastname, dni, curp,
             company_name, person, units, unit_type, units_by_unit_type, total_units, price_by_unit_type, product_name,
             size, price, list_items, cant_items, subtotal, on_account, status, comments, flag, minimum_purchase,
             maximum_purchase, expires, coupon_type, award;
     // , coupon;
 
+    /**
+     * Empty builder
+     */
     public Controller() {
     }
 
