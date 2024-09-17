@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controllers.Controller;
 import helpers.StyleComponents;
+import helpers.Validator;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -24,6 +25,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ManagementCustomerView extends JDialog implements ActionListener, FocusListener, KeyListener {
         private JPanel panel;
@@ -306,16 +309,58 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                                 this.clearForm();
                         }
                 } catch (Exception e) {
-                        System.out.println(e.getMessage());
                         JOptionPane.showMessageDialog(this, "An error ocurred while loading data in the form", "Error",
                                         JOptionPane.ERROR_MESSAGE);
+                }
+        }
+
+        private void addNewCustomer() {
+                String value = new Controller(
+                                this.txtPhone.getText().trim(),
+                                this.txtEmail.getText().toLowerCase().trim(),
+                                this.txtStreet.getText().toUpperCase().trim(),
+                                this.txtExtNum.getText().toUpperCase().trim(),
+                                this.txtIntNum.getText().toUpperCase().trim(),
+                                this.txtDelegation.getText().toUpperCase().trim(),
+                                this.txtCountry.getText().toUpperCase().trim(),
+                                this.txtName.getText().toUpperCase().trim(),
+                                this.txtLastname.getText().toUpperCase().trim(),
+                                this.txtDni.getText().toUpperCase().trim(),
+                                this.txtCurp.getText().toUpperCase().trim())
+                                .newCustomer();
+
+                if (value.equals("address")) {
+                        JOptionPane.showMessageDialog(this, "Please, check your address information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("contact")) {
+                        JOptionPane.showMessageDialog(this, "Please, check your contact information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("customer")) {
+                        JOptionPane.showMessageDialog(this, "Please, check your personal information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("general_err")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong", "Notice",
+                                        JOptionPane.ERROR_MESSAGE);
+                } else {
+                        String val = new Validator().VerifyInteger(value);
+
+                        if (!val.equals("Err")) {
+                                this.clearForm();
+                                this.loadCustomers();
+
+                                JOptionPane.showMessageDialog(this, "New record successfully saved", "Successful",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(this, "Oops, unexpected wrong, not saved", "Notice",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
                 }
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
-                        // add event
+
                 } else if (e.getSource() == btnModify) {
                         // add event
                 } else if (e.getSource() == btnSearch) {
