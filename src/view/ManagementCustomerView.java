@@ -259,8 +259,13 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                         }
 
                         if (rows == 0) {
+                                btnRemove.setVisible(false);
+                                btnEdit.setVisible(false);
                                 JOptionPane.showMessageDialog(this, "Unregistered customer", "Information",
                                                 JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                btnRemove.setVisible(true);
+                                btnEdit.setVisible(true);
                         }
 
                         this.txtSearch.setText("");
@@ -305,6 +310,8 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                                 txtPhone.setText(customerDetails.getString("Customer phone"));
                                 txtEmail.setText(customerDetails.getString("Customer mail"));
                                 btnModify.setVisible(true);
+                                btnAdd.setVisible(false);
+                                btnRemove.setVisible(true);
                         } else {
                                 this.clearForm();
                         }
@@ -398,6 +405,7 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
                 } else if (e.getSource() == btnClearForm) {
                         this.clearForm();
                         this.txtName.requestFocus();
+                        this.btnAdd.setVisible(true);
                 } else if (e.getSource() == btnReturn) {
                         this.clearForm();
                         this.setVisible(false);
