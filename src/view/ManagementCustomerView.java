@@ -360,7 +360,37 @@ public class ManagementCustomerView extends JDialog implements ActionListener, F
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
+                        if (!this.txtName.getText().trim().isEmpty()
+                                        || !this.txtLastname.getText().trim().isEmpty()
+                                        || !this.txtDni.getText().trim().isEmpty()
+                                        || !this.txtCurp.getText().trim().isEmpty()
+                                        || !this.txtStreet.getText().trim().isEmpty()
+                                        || !this.txtExtNum.getText().trim().isEmpty()
+                                        || !this.txtDelegation.getText().trim().isEmpty()
+                                        || !this.txtCountry.getText().trim().isEmpty()
+                                        || !this.txtPhone.getText().trim().isEmpty()
+                                        || !this.txtEmail.getText().trim().isEmpty()) {
+                                if (this.txtPhone.getText().length() == 10) {
+                                        Pattern pattern = Pattern.compile(
+                                                        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                                        Matcher matcher = pattern.matcher(this.txtEmail.getText().trim().toLowerCase());
 
+                                        if (matcher.find()) {
+                                                this.addNewCustomer();
+                                        } else {
+                                                JOptionPane.showMessageDialog(this,
+                                                                "Oops, your email is invalid, please, enter another or check the syntax",
+                                                                "Notice", JOptionPane.INFORMATION_MESSAGE);
+                                        }
+                                } else {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "The phone field must be at least 10 digits", "Notice",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this, "You must provide complete information", "Notice",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnModify) {
                         // add event
                 } else if (e.getSource() == btnSearch) {
