@@ -19,6 +19,36 @@ public class Controller {
     public Controller() {
     }
 
+    /**
+     * Build to create new customer
+     * 
+     * @param phoneNumber
+     * @param email
+     * @param street
+     * @param extNum
+     * @param intNum
+     * @param delegation
+     * @param country
+     * @param name
+     * @param lastname
+     * @param dni
+     * @param curp
+     */
+    public Controller(String phoneNumber, String email, String street, String extNum, String intNum, String delegation,
+            String country, String name, String lastname, String dni, String curp) {
+        this.phone_number = phoneNumber;
+        this.email = email;
+        this.street = street;
+        this.ext_num = extNum;
+        this.int_num = intNum;
+        this.delegation = delegation;
+        this.country = country;
+        this.name = name;
+        this.lastname = lastname;
+        this.dni = dni;
+        this.curp = curp;
+    }
+
     public Controller(String phone_number, String email, String street, String ext_num, String int_num,
             String delegation, String country, String name, String lastname, String dni, String curp,
             String company_name, String person, String units, String unit_type, String units_by_unit_type,
