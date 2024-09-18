@@ -429,8 +429,8 @@ public class Controller {
 
             if (this.units != "Err" && this.unit_type != "Err" && this.units_by_unit_type != "Err"
                     && this.total_units != "Err" && this.price_by_unit_type != "Err") {
-
                 if (provider != null) {
+
                     BigDecimal stock = new StockController(
                             Integer.parseInt(this.units),
                             this.unit_type.toUpperCase(),
@@ -441,7 +441,25 @@ public class Controller {
                             .create();
 
                     if (stock != null) {
-                        return String.valueOf(stock);
+                        // return String.valueOf(stock);
+                        // ----------- TESTING
+                        String product = null;
+                        product = this.newProduct(stock);
+                        if (product != null) {
+                            return String.valueOf(product);
+                        } else if (product == "products" || product == "key_provider" || product == null) {
+                            new StockController(
+                                    0,
+                                    null,
+                                    0,
+                                    0,
+                                    0,
+                                    null)
+                                    .delete(stock);
+
+                            return "product";
+                        }
+                        // ----------- TESTING
                     } else {
                         return "stock";
                     }
@@ -457,7 +475,7 @@ public class Controller {
         return "general_err";
     }
 
-    public String newProduct(BigDecimal stock) {
+    private String newProduct(BigDecimal stock) {
         try {
             this.product_name = new Validator().VerifyString(this.product_name);
             this.size = new Validator().VerifyString(this.size);
