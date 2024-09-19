@@ -49,6 +49,30 @@ public class Controller {
         this.curp = curp;
     }
 
+    /**
+     * Build to create new stock
+     * 
+     * @param units
+     * @param unitType
+     * @param unitsByUnitType
+     * @param totalUnits
+     * @param priceByUnitType
+     * @param productName
+     * @param size
+     * @param price
+     */
+    public Controller(String units, String unitType, String unitsByUnitType, String totalUnits, String priceByUnitType,
+            String productName, String size, String price) {
+        this.units = units;
+        this.unit_type = unitType;
+        this.units_by_unit_type = unitsByUnitType;
+        this.total_units = totalUnits;
+        this.price_by_unit_type = priceByUnitType;
+        this.product_name = productName;
+        this.size = size;
+        this.price = price;
+    }
+
     public Controller(String phone_number, String email, String street, String ext_num, String int_num,
             String delegation, String country, String name, String lastname, String dni, String curp,
             String company_name, String person, String units, String unit_type, String units_by_unit_type,
@@ -441,13 +465,22 @@ public class Controller {
                             .create();
 
                     if (stock != null) {
-                        // return String.valueOf(stock);
-                        // ----------- TESTING
                         String product = null;
                         product = this.newProduct(stock);
-                        if (product != null) {
+                        if (product != null && product != "product" && product != "key_provider") {
                             return String.valueOf(product);
-                        } else if (product == "products" || product == "key_provider" || product == null) {
+                        } else if (product == "product" || product == "key_provider") {
+                            new StockController(
+                                    0,
+                                    null,
+                                    0,
+                                    0,
+                                    0,
+                                    null)
+                                    .delete(stock);
+
+                            return "product";
+                        } else {
                             new StockController(
                                     0,
                                     null,
@@ -459,7 +492,6 @@ public class Controller {
 
                             return "product";
                         }
-                        // ----------- TESTING
                     } else {
                         return "stock";
                     }
