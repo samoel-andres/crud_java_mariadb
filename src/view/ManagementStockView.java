@@ -170,6 +170,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 cboUnitType.addItemListener(this);
                 cboSize.addItemListener(this);
                 cboProvider.addItemListener(this);
+                txtPriceByUnitType.addFocusListener(this);
 
                 txtUnits.addActionListener(this);
                 cboUnitType.addActionListener(this);
@@ -245,7 +246,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 panel.add(btnEdit);
 
                 // non editable
-                // txtTotalUnits.setEditable(false);
+                txtTotalUnits.setEditable(false);
                 txtPID.setEditable(false);
 
                 // hidden by default
@@ -510,6 +511,15 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
 
                                                         if (!validaU.equals("Err")) {
                                                                 if (!validaUBUT.equals("Err")) {
+                                                                        this.txtTotalUnits.setText(
+                                                                                        String.valueOf(Double
+                                                                                                        .parseDouble(this.txtUnits
+                                                                                                                        .getText()
+                                                                                                                        .trim())
+                                                                                                        * Double.parseDouble(
+                                                                                                                        this.txtUnitsByUnitType
+                                                                                                                                        .getText()
+                                                                                                                                        .trim())));
                                                                         if (!validaTTU.equals("Err")) {
                                                                                 if (!validaPBUT.equals("Err")) {
                                                                                         if (!validaPBU.equals("Err")) {
@@ -660,6 +670,18 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
         public void focusGained(FocusEvent e) {
                 if (e.getSource() == txtSearch) {
                         this.txtSearch.setText("");
+                } else if (e.getSource() == txtPriceByUnitType) {
+                        String validaUnits = new Validator().VerifyDouble(this.txtUnits.getText().trim());
+                        String validaUnitsByUnitType = new Validator()
+                                        .VerifyDouble(this.txtUnitsByUnitType.getText().trim());
+
+                        if (validaUnits != "Err" && validaUnitsByUnitType != "Err") {
+                                this.txtTotalUnits.setText(
+                                                String.valueOf(Double.parseDouble(validaUnits)
+                                                                * Double.parseDouble(validaUnitsByUnitType)));
+                        } else {
+                                this.txtTotalUnits.setText("");
+                        }
                 }
         }
 
