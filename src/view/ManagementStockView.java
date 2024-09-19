@@ -473,7 +473,129 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
+                        String sUnitType = (String) cboUnitType.getSelectedItem();
+                        String sSize = (String) cboSize.getSelectedItem();
+                        String sProvider = (String) cboProvider.getSelectedItem();
 
+                        if (!this.txtUnits.getText().trim().isEmpty()
+                                        || !this.txtUnitsByUnitType.getText().trim().isEmpty()
+                                        || !this.txtTotalUnits.getText().trim().isEmpty()
+                                        || !this.txtPriceByUnitType.getText().trim().isEmpty()
+                                        || !this.txtProductName.getText().trim().isEmpty()
+                                        || !this.txtPriceByUnit.getText().trim().isEmpty()
+                                        || !this.txtPID.getText().trim().isEmpty()) {
+                                if (!sUnitType.equals("Specify the unit type")) {
+                                        if (!sSize.equals("Specify the unit size")) {
+                                                if (!sProvider.equals("Specify the provider")) {
+                                                        String validaU = new Validator()
+                                                                        .VerifyDouble(this.txtUnits.getText());
+                                                        String validaUBUT = new Validator().VerifyDouble(
+                                                                        this.txtUnitsByUnitType.getText());
+                                                        String validaTTU = new Validator()
+                                                                        .VerifyDouble(this.txtTotalUnits.getText());
+                                                        String validaPBUT = new Validator().VerifyDouble(
+                                                                        this.txtPriceByUnitType.getText());
+                                                        String validaPBU = new Validator()
+                                                                        .VerifyDouble(this.txtPriceByUnit.getText());
+
+                                                        if (!validaU.equals("Err")) {
+                                                                if (!validaUBUT.equals("Err")) {
+                                                                        if (!validaTTU.equals("Err")) {
+                                                                                if (!validaPBUT.equals("Err")) {
+                                                                                        if (!validaPBU.equals("Err")) {
+                                                                                                if (sUnitType.equals(
+                                                                                                                "Other")
+                                                                                                                || sSize.equals("Other")) {
+                                                                                                        if (!this.txtUnitType
+                                                                                                                        .getText()
+                                                                                                                        .trim()
+                                                                                                                        .isEmpty()
+                                                                                                                        || !this.txtSize.getText()
+                                                                                                                                        .trim()
+                                                                                                                                        .isEmpty()) {
+
+                                                                                                                if (sUnitType == "Other") {
+                                                                                                                        sUnitType = this.txtUnitType
+                                                                                                                                        .getText()
+                                                                                                                                        .trim()
+                                                                                                                                        .toUpperCase();
+                                                                                                                }
+
+                                                                                                                if (sSize == "Other") {
+                                                                                                                        sSize = this.txtSize
+                                                                                                                                        .getText()
+                                                                                                                                        .trim()
+                                                                                                                                        .toUpperCase();
+                                                                                                                }
+
+                                                                                                                this.addStock(sUnitType,
+                                                                                                                                sSize,
+                                                                                                                                this.txtPID.getText()
+                                                                                                                                                .trim());
+                                                                                                        } else {
+                                                                                                                JOptionPane.showMessageDialog(
+                                                                                                                                this,
+                                                                                                                                "Some fields are blank, please check",
+                                                                                                                                "Notice",
+                                                                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                                                                        }
+                                                                                                } else {
+                                                                                                        this.addStock(sUnitType,
+                                                                                                                        sSize,
+                                                                                                                        this.txtPID.getText()
+                                                                                                                                        .trim());
+                                                                                                }
+                                                                                        } else {
+                                                                                                JOptionPane.showMessageDialog(
+                                                                                                                this,
+                                                                                                                "The value in 'Price by unit' must be numeric",
+                                                                                                                "Notice",
+                                                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                                                        }
+                                                                                } else {
+                                                                                        JOptionPane.showMessageDialog(
+                                                                                                        this,
+                                                                                                        "The value in 'Price by unit type' must be numeric",
+                                                                                                        "Notice",
+                                                                                                        JOptionPane.INFORMATION_MESSAGE);
+                                                                                }
+                                                                        } else {
+                                                                                JOptionPane.showMessageDialog(this,
+                                                                                                "The value in 'This is the total units' must be numeric",
+                                                                                                "Notice",
+                                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                                        }
+                                                                } else {
+                                                                        JOptionPane.showMessageDialog(this,
+                                                                                        "The value in 'How many units contain each unit' must be numeric",
+                                                                                        "Notice",
+                                                                                        JOptionPane.INFORMATION_MESSAGE);
+                                                                }
+                                                        } else {
+                                                                JOptionPane.showMessageDialog(this,
+                                                                                "The value in 'How many units' must be numeric",
+                                                                                "Notice",
+                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                        }
+                                                } else {
+                                                        JOptionPane.showMessageDialog(this,
+                                                                        "Please specify the provider of product",
+                                                                        "Notice",
+                                                                        JOptionPane.INFORMATION_MESSAGE);
+                                                }
+                                        } else {
+                                                JOptionPane.showMessageDialog(this, "Please specify the unit size",
+                                                                "Notice",
+                                                                JOptionPane.INFORMATION_MESSAGE);
+                                        }
+                                } else {
+                                        JOptionPane.showMessageDialog(this, "Please specify the unit type", "Notice",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this, "You must provide complete information", "Notice",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnModify) {
 
                 } else if (e.getSource() == btnClearForm) {
