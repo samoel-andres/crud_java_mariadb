@@ -10,6 +10,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controllers.Controller;
 import helpers.StyleComponents;
+import helpers.Validator;
 
 public class ManagementStockView extends JDialog implements ActionListener, FocusListener, KeyListener, ItemListener {
         private JPanel panel;
@@ -243,10 +245,10 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 panel.add(btnEdit);
 
                 // non editable
-                txtTotalUnits.setEditable(false);
+                // txtTotalUnits.setEditable(false);
                 txtPID.setEditable(false);
 
-                // disabled by default
+                // hidden by default
                 txtUnitType.setVisible(false);
                 txtSize.setVisible(false);
                 btnModify.setVisible(false);
@@ -423,6 +425,49 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 this.stockDetails = null;
                 this.SID = null;
                 btnModify.setVisible(false);
+        }
+
+        private void addStock(String sUnitType, String sSize, String sProvider) {
+                String value = new Controller(
+                                this.txtUnits.getText().trim(),
+                                sUnitType,
+                                this.txtUnitsByUnitType.getText().trim(),
+                                this.txtTotalUnits.getText().trim(),
+                                this.txtPriceByUnitType.getText().trim(),
+                                this.txtProductName.getText().trim().toUpperCase(),
+                                sSize,
+                                this.txtPriceByUnit.getText().trim())
+                                .newStock(new BigDecimal(sProvider));
+
+                if (value.equals("product")) {
+                        JOptionPane.showMessageDialog(this, "Please, check the information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("key_stock")) {
+                        JOptionPane.showMessageDialog(this, "Please, unexpected wrong on SID", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("stock")) {
+                        JOptionPane.showMessageDialog(this, "Please, check the information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("key_provider")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong on PID", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("general_err")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong", "Notice",
+                                        JOptionPane.ERROR_MESSAGE);
+                } else {
+                        String val = new Validator().VerifyInteger(value);
+
+                        if (!val.equals("Err")) {
+                                this.clearForm();
+                                this.loadStock();
+
+                                JOptionPane.showMessageDialog(this, "New record successfully saved", "Successful",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(this, "Oops, unexpected wrong, not saved", "Notice",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                }
         }
 
         @Override
