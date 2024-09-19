@@ -340,8 +340,13 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                         }
 
                         if (rows == 0) {
+                                btnRemove.setVisible(false);
+                                btnEdit.setVisible(false);
                                 JOptionPane.showMessageDialog(this, "Unregistered stock", "Information",
                                                 JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                btnRemove.setVisible(true);
+                                btnEdit.setVisible(true);
                         }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "Data could not be loaded", "Error",
@@ -397,7 +402,9 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                                         }
 
                                 }
+                                btnAdd.setVisible(false);
                                 btnModify.setVisible(true);
+                                btnRemove.setVisible(true);
                         } else {
                                 this.clearForm();
                         }
@@ -425,6 +432,7 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                 this.stockDetails = null;
                 this.SID = null;
                 btnModify.setVisible(false);
+                btnAdd.setVisible(true);
         }
 
         private void addStock(String sUnitType, String sSize, String sProvider) {
