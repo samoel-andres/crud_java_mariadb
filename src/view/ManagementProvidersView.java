@@ -9,6 +9,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controllers.Controller;
 import helpers.StyleComponents;
+import helpers.Validator;
 
 public class ManagementProvidersView extends JDialog implements ActionListener, KeyListener, FocusListener {
         private JPanel panel;
@@ -298,7 +301,72 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
+                        String sActivity = (String) cboPerson.getSelectedItem();
 
+                        if (!this.txtCompany.getText().trim().isEmpty()
+                                        || !this.txtStreet.getText().trim().isEmpty()
+                                        || !this.txtExtNum.getText().trim().isEmpty()
+                                        || !this.txtIntNum.getText().trim().isEmpty()
+                                        || !this.txtDelegation.getText().trim().isEmpty()
+                                        || !this.txtCompany.getText().trim().isEmpty()
+                                        || !this.txtPhone.getText().trim().isEmpty()
+                                        || !this.txtEmail.getText().trim().isEmpty()) {
+                                if (!sActivity.equals("Business activity")) {
+                                        String validaEN = new Validator()
+                                                        .VerifyInteger(this.txtExtNum.getText().trim());
+                                        String validaIN = new Validator()
+                                                        .VerifyInteger(this.txtIntNum.getText().trim());
+                                        String validaPN = new Validator().VerifyInteger(this.txtPhone.getText().trim());
+                                        if (!validaEN.equals("Err")) {
+                                                if (!validaIN.equals("Err")) {
+                                                        if (!validaPN.equals("Err")) {
+                                                                if (validaPN.length() == 10) {
+                                                                        Pattern pattern = Pattern.compile(
+                                                                                        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                                                                        Matcher matcher = pattern.matcher(
+                                                                                        this.txtEmail.getText().trim()
+                                                                                                        .toLowerCase());
+
+                                                                        if (matcher.find()) {
+                                                                                System.out.println("ENVIA DATOS");
+                                                                        } else {
+                                                                                JOptionPane.showMessageDialog(this,
+                                                                                                "Oops, your email is invalid, please, enter another or check the syntax",
+                                                                                                "Notice",
+                                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                                        }
+                                                                } else {
+                                                                        JOptionPane.showMessageDialog(this,
+                                                                                        "The phone number must be at least 10 digits",
+                                                                                        "Notice",
+                                                                                        JOptionPane.INFORMATION_MESSAGE);
+                                                                }
+                                                        } else {
+                                                                JOptionPane.showMessageDialog(this,
+                                                                                "The value in 'Phone number' must be numeric",
+                                                                                "Notice",
+                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                        }
+                                                } else {
+                                                        JOptionPane.showMessageDialog(this,
+                                                                        "The value in 'Interior number' must be numeric",
+                                                                        "Notice", JOptionPane.INFORMATION_MESSAGE);
+                                                }
+                                        } else {
+                                                JOptionPane.showMessageDialog(this,
+                                                                "The value in 'Exterior number' must be numeric",
+                                                                "Notice", JOptionPane.INFORMATION_MESSAGE);
+                                        }
+                                } else {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "Please, specify the business activity of the provider",
+                                                        "Notice",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this, "You must provide complete information", "Notice",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnModify) {
 
                 } else if (e.getSource() == btnClearForm) {
