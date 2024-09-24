@@ -249,8 +249,15 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                         }
 
                         if (rows == 0) {
+                                btnRemove.setVisible(false);
+                                btnEdit.setVisible(false);
+                                btnViewProducts.setVisible(false);
                                 JOptionPane.showMessageDialog(this, "Unregistered provider", "Information",
                                                 JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                btnRemove.setVisible(true);
+                                btnEdit.setVisible(true);
+                                btnViewProducts.setVisible(true);
                         }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "Data could not be loaded", "Error",
@@ -271,6 +278,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 btnModify.setVisible(false);
                 this.PID = null;
                 this.providerDetails = null;
+                btnAdd.setVisible(true);
         }
 
         private void loadProviderDetails() {
@@ -288,6 +296,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                                 txtPhone.setText(this.providerDetails.getString("Provider phone"));
                                 txtEmail.setText(this.providerDetails.getString("Provider mail"));
                                 btnModify.setVisible(true);
+                                btnAdd.setVisible(false);
                         } else {
                                 this.clearForm();
                         }
