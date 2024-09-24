@@ -298,6 +298,47 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                 }
         }
 
+        private void addNewProvider(String person) {
+                String value = new Controller(
+                                this.txtCompany.getText().trim().toUpperCase(),
+                                person,
+                                this.txtStreet.getText().trim().toUpperCase(),
+                                this.txtIntNum.getText().trim(),
+                                this.txtExtNum.getText().trim(),
+                                this.txtDelegation.getText().trim().toUpperCase(),
+                                this.txtCountry.getText().trim().toUpperCase(),
+                                this.txtPhone.getText().trim(),
+                                this.txtEmail.getText().toLowerCase())
+                                .newProvider();
+
+                if (value.equals("provider")) {
+                        JOptionPane.showMessageDialog(this, "Please, check the company name and the business activity",
+                                        "Notice", JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("address")) {
+                        JOptionPane.showMessageDialog(this, "Please, check the address information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("contact")) {
+                        JOptionPane.showMessageDialog(this, "Please, check the contact information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("general_err")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong", "Notice",
+                                        JOptionPane.ERROR_MESSAGE);
+                } else {
+                        String val = new Validator().VerifyInteger(value);
+
+                        if (!val.equals("Err")) {
+                                this.clearForm();
+                                this.loadProviders();
+
+                                JOptionPane.showMessageDialog(this, "New record successfully saved", "Successful",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(this, "Oops, unexpected wrong, not saved", "Notice",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                }
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
@@ -328,7 +369,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                                                                                                         .toLowerCase());
 
                                                                         if (matcher.find()) {
-                                                                                System.out.println("ENVIA DATOS");
+
                                                                         } else {
                                                                                 JOptionPane.showMessageDialog(this,
                                                                                                 "Oops, your email is invalid, please, enter another or check the syntax",
