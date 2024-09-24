@@ -369,7 +369,7 @@ public class ManagementProvidersView extends JDialog implements ActionListener, 
                                                                                                         .toLowerCase());
 
                                                                         if (matcher.find()) {
-
+                                                                                this.addNewProvider(sActivity);
                                                                         } else {
                                                                                 JOptionPane.showMessageDialog(this,
                                                                                                 "Oops, your email is invalid, please, enter another or check the syntax",
