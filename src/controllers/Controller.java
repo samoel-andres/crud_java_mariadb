@@ -20,7 +20,7 @@ public class Controller {
     }
 
     /**
-     * Build to create new customer
+     * Build to create new customer and user
      * 
      * @param phoneNumber
      * @param email
@@ -346,7 +346,7 @@ public class Controller {
                             return "contact";
                         }
                     } else {
-                        return "uuser";
+                        return "user";
                     }
                 } else {
                     return "address";
