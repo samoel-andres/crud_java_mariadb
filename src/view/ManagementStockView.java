@@ -297,8 +297,17 @@ public class ManagementStockView extends JDialog implements ActionListener, Focu
                         }
 
                         if (rows == 0) {
-                                JOptionPane.showMessageDialog(this, "Unregistered provider", "Information",
-                                                JOptionPane.INFORMATION_MESSAGE);
+                                int op = JOptionPane.showConfirmDialog(this,
+                                                "¡There are no registered providers!\nBefore that agregate stock needs to add providers... Do you want to make it now?",
+                                                "Alert", 0);
+                                                
+                                if (op == 0) {
+                                        this.setVisible(false);
+                                        new ManagementProvidersView(null, "Providers management", true)
+                                                        .setVisible(true);
+                                } else {
+                                        this.setVisible(false);
+                                }
                         }
 
                         return list;
