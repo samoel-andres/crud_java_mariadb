@@ -259,8 +259,13 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                         }
 
                         if (rows == 0) {
+                                btnRemove.setVisible(false);
+                                btnEdit.setVisible(false);
                                 JOptionPane.showMessageDialog(this, "Unregistered user", "Information",
                                                 JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                btnRemove.setVisible(true);
+                                btnEdit.setVisible(true);
                         }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "Data could not be loaded", "Error",
@@ -281,6 +286,7 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 txtPhone.setText("");
                 txtEmail.setText("");
                 btnModify.setVisible(false);
+                btnAdd.setVisible(true);
                 this.UID = null;
                 this.userDetails = null;
         }
@@ -302,6 +308,8 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                                 txtPhone.setText(userDetails.getString("User phone"));
                                 txtEmail.setText(userDetails.getString("User mail"));
                                 btnModify.setVisible(true);
+                                btnRemove.setVisible(true);
+                                btnAdd.setVisible(false);
                         } else {
                                 this.clearForm();
                         }
