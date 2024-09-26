@@ -99,6 +99,21 @@ public class Controller {
         this.email = email;
     }
 
+    /**
+     * Build to create new sale
+     * 
+     * @param listItems
+     * @param cantItems
+     * @param subtotal
+     * @param flag
+     */
+    public Controller(String listItems, String cantItems, String subtotal, String flag) {
+        this.list_items = listItems;
+        this.cant_items = cantItems;
+        this.subtotal = subtotal;
+        this.flag = flag;
+    }
+
     public Controller(String phone_number, String email, String street, String ext_num, String int_num,
             String delegation, String country, String name, String lastname, String dni, String curp,
             String company_name, String person, String units, String unit_type, String units_by_unit_type,
