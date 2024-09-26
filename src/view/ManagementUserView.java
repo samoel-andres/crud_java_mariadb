@@ -312,6 +312,49 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                 }
         }
 
+        private void addNewUser() {
+                String value = new Controller(
+                                this.txtPhone.getText().trim(),
+                                this.txtEmail.getText().toLowerCase().trim(),
+                                this.txtStreet.getText().toUpperCase().trim(),
+                                this.txtExtNum.getText().toUpperCase().trim(),
+                                this.txtIntNum.getText().toUpperCase().trim(),
+                                this.txtDelegation.getText().toUpperCase().trim(),
+                                this.txtCountry.getText().toUpperCase().trim(),
+                                this.txtName.getText().toUpperCase().trim(),
+                                this.txtLastname.getText().toUpperCase().trim(),
+                                this.txtDni.getText().toUpperCase().trim(),
+                                this.txtCurp.getText().toUpperCase().trim())
+                                .newUser();
+
+                if (value.equals("address")) {
+                        JOptionPane.showMessageDialog(this, "Please, check your address information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("contact")) {
+                        JOptionPane.showMessageDialog(this, "Please, check your contact information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("user")) {
+                        JOptionPane.showMessageDialog(this, "Please, check your personal information", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (value.equals("general_err")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong", "Notice",
+                                        JOptionPane.ERROR_MESSAGE);
+                } else {
+                        String val = new Validator().VerifyInteger(value);
+
+                        if (!val.equals("Err")) {
+                                this.clearForm();
+                                this.loadUsers();
+
+                                JOptionPane.showMessageDialog(this, "New record successfully saved", "Successful",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(this, "Oops, unexpected wrong, not saved", "Notice",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                }
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
@@ -341,7 +384,7 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
                                                                                 .getText().trim().toLowerCase());
 
                                                                 if (matcher.find()) {
-                                                                        System.out.println("MANDA DATOS");
+                                                                        this.addNewUser();
                                                                 } else {
                                                                         JOptionPane.showMessageDialog(this,
                                                                                         "Oops, your email is invalid, please, enter another or check the syntax",
