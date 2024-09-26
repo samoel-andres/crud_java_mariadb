@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controllers.Controller;
 import helpers.StyleComponents;
+import helpers.Validator;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -24,6 +25,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ManagementUserView extends JDialog implements ActionListener, FocusListener, KeyListener {
         private JPanel panel;
@@ -312,7 +315,65 @@ public class ManagementUserView extends JDialog implements ActionListener, Focus
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAdd) {
-                        // add event
+                        if (!this.txtName.getText().trim().isEmpty()
+                                        || !this.txtLastname.getText().trim().isEmpty()
+                                        || !this.txtDni.getText().trim().isEmpty()
+                                        || !this.txtCurp.getText().trim().isEmpty()
+                                        || !this.txtStreet.getText().trim().isEmpty()
+                                        || !this.txtExtNum.getText().trim().isEmpty()
+                                        || !this.txtIntNum.getText().trim().isEmpty()
+                                        || !this.txtDelegation.getText().trim().isEmpty()
+                                        || !this.txtCountry.getText().trim().isEmpty()
+                                        || !this.txtPhone.getText().trim().isEmpty()
+                                        || !this.txtEmail.getText().trim().isEmpty()) {
+                                String validaEN = new Validator()
+                                                .VerifyInteger(this.txtExtNum.getText().trim());
+                                String validaIN = new Validator()
+                                                .VerifyInteger(this.txtIntNum.getText().trim());
+                                String validaPN = new Validator().VerifyInteger(this.txtPhone.getText().trim());
+                                if (!validaEN.equals("Err")) {
+                                        if (!validaIN.equals("Err")) {
+                                                if (!validaPN.equals("Err")) {
+                                                        if (this.txtPhone.getText().length() == 10) {
+                                                                Pattern pattern = Pattern.compile(
+                                                                                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                                                                Matcher matcher = pattern.matcher(this.txtEmail
+                                                                                .getText().trim().toLowerCase());
+
+                                                                if (matcher.find()) {
+                                                                        System.out.println("MANDA DATOS");
+                                                                } else {
+                                                                        JOptionPane.showMessageDialog(this,
+                                                                                        "Oops, your email is invalid, please, enter another or check the syntax",
+                                                                                        "Notice",
+                                                                                        JOptionPane.INFORMATION_MESSAGE);
+                                                                }
+                                                        } else {
+                                                                JOptionPane.showMessageDialog(this,
+                                                                                "The phone field must be at least 10 digits",
+                                                                                "Notice",
+                                                                                JOptionPane.INFORMATION_MESSAGE);
+                                                        }
+                                                } else {
+                                                        JOptionPane.showMessageDialog(this,
+                                                                        "The value in 'Phone number' must be numeric",
+                                                                        "Notice",
+                                                                        JOptionPane.INFORMATION_MESSAGE);
+                                                }
+                                        } else {
+                                                JOptionPane.showMessageDialog(this,
+                                                                "The value in 'Interior number' must be numeric",
+                                                                "Notice", JOptionPane.INFORMATION_MESSAGE);
+                                        }
+                                } else {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "The value in 'Exterior number' must be numeric",
+                                                        "Notice", JOptionPane.INFORMATION_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(this, "You must provide complete information", "Notice",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                        }
                 } else if (e.getSource() == btnModify) {
                         // add event
                 } else if (e.getSource() == btnRemove) {
