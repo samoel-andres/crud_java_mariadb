@@ -61,7 +61,7 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                 btnAddCart = new StyleComponents().Button("Add to cart", (width - width + space_between * 2 + 300),
                                 (height - height + space_between + 9), 150, 40);
 
-                btnQuoteProduct = new StyleComponents().Button("Search product",
+                btnQuoteProduct = new StyleComponents().Button("View stock",
                                 (width - width + space_between * 3 + 450), (height - height + space_between + 9),
                                 150, 40);
 
