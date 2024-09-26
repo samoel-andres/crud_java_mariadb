@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,6 +34,7 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
         private JScrollPane tScroll;
         private JTable tListCart;
         private DefaultTableModel tModel;
+        private JLabel lblUserName, lblUID, lblID, lblUName;
 
         private int space_between = 20;
         private int width = Toolkit.getDefaultToolkit().getScreenSize().width - 50;
@@ -76,6 +78,22 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                                 (width - width + space_between), (height - space_between * 4), 300, 40);
                 txtSubtotal.setFont(new Font("Nunito", Font.PLAIN, 25));
 
+                lblID = new StyleComponents().Label("UID:", (width - width + space_between * 2 + 365),
+                                (height - space_between * 4), 30, 20);
+                lblID.setFont(new Font("Nunito", Font.BOLD, 15));
+                lblID.setForeground(Color.RED);
+
+                lblUID = new StyleComponents().Label("8", (width - width + space_between * 2 + 405),
+                                (height - space_between * 4), 100, 20);
+
+                lblUName = new StyleComponents().Label("USER NAME:", (width - width + space_between * 2 + 300),
+                                (height - space_between * 3), 100, 20);
+                lblUName.setFont(new Font("Nunito", Font.BOLD, 15));
+                lblUName.setForeground(Color.RED);
+
+                lblUserName = new StyleComponents().Label("USUARIO GENERAL", (width - width + space_between * 2 + 405),
+                                (height - space_between * 3), 300, 20);
+
                 btnCancelSale = new StyleComponents().Button("Cancel sale", (width - space_between * 10 - 150),
                                 (height - space_between * 4), 150, 40);
 
@@ -112,6 +130,10 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                 panel.add(txtSubtotal);
                 panel.add(btnCancelSale);
                 panel.add(btnPurchase);
+                panel.add(lblID);
+                panel.add(lblUID);
+                panel.add(lblUName);
+                panel.add(lblUserName);
 
                 // disabled components
                 this.txtSubtotal.setEditable(false);
