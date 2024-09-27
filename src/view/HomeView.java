@@ -9,6 +9,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 
 import javax.swing.JButton;
@@ -308,6 +309,54 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                                 }
                         }
                 }
+        }
+
+        private String generateProductList() {
+                int cantRows = tModel.getRowCount() - 1;
+                String list = "";
+
+                if (cantRows >= 0) {
+                        for (int index = 0; index <= cantRows; index++) {
+                                list += "|"
+                                                + (String) tModel.getValueAt(index, 0) + " Units of "
+                                                + (String) tModel.getValueAt(index, 3) + " "
+                                                + (String) tModel.getValueAt(index, 4) + ", C/U $"
+                                                + (String) tModel.getValueAt(index, 5) + ", Subtotal $"
+                                                + (String) tModel.getValueAt(index, 6);
+                        }
+                        return list;
+                }
+                return "general_err";
+        }
+
+        private String countItems() {
+                int cantRows = tModel.getRowCount() - 1;
+                String value = "";
+                double n = 0;
+
+                if (cantRows >= 0) {
+                        for (int index = 0; index <= cantRows; index++) {
+                                value = (String) tModel.getValueAt(index, 0);
+                                n += Double.parseDouble(value);
+                        }
+                        return String.valueOf(n);
+                }
+                return "general_err";
+        }
+
+        private String calculateTotal() {
+                int cantRows = tModel.getRowCount() - 1;
+                double n = 0;
+                String value = "";
+
+                if (cantRows >= 0) {
+                        for (int index = 0; index <= cantRows; index++) {
+                                value = (String) tModel.getValueAt(index, 6);
+                                n += Double.parseDouble(value);
+                        }
+                        return String.valueOf(n);
+                }
+                return "general_err";
         }
 
         @Override
