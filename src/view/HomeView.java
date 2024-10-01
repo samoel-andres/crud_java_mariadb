@@ -359,6 +359,39 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                 return "general_err";
         }
 
+        private String addNewSale(String listItems, String cantItems, String subtotal, String flag, String UID,
+                        String CID, String COUPON) {
+                String val = new Controller(
+                                listItems,
+                                cantItems,
+                                subtotal,
+                                flag)
+                                .newSale(new BigDecimal(UID), new BigDecimal(CID), new BigDecimal(COUPON));
+
+                if (val.equals("sale")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong on sale", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (val.equals("key_customer")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong on customer key", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (val.equals("key_user")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong on user key", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else if (val.equals("general_err")) {
+                        JOptionPane.showMessageDialog(this, "Oops, unexpected wrong", "Notice",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                        String valu = new Validator().VerifyInteger(val);
+
+                        if (!valu.equals("Err")) {
+                                return "ok";
+                        } else {
+                                return "Err";
+                        }
+                }
+                return null;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnAddCart) {
