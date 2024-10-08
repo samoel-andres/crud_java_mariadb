@@ -408,7 +408,30 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         this.cancelSale();
                         this.calculateTotalPurchase();
                 } else if (e.getSource() == btnPurchase) {
+                        String CID = "8";
+                        String UID = lblUID.getText();
+                        String COUPON = "1";
+                        String listItems = this.generateProductList();
+                        String cantIntems = this.countItems();
+                        String subtotal = this.calculateTotal();
+                        String flag = "PAGADA";
 
+                        String value = "";
+
+                        do {
+                                value = JOptionPane.showInputDialog(this,
+                                                "The value must be numeric.\nCustomer pays...");
+
+                                if (value == null) {
+                                        break;
+                                } else {
+                                        value = new Validator().VerifyDouble(value);
+                                }
+                        } while (value.equals("Err"));
+
+                        if (value != null & value != "Err") {
+                                System.out.println("PROCEDE GUARDAR");
+                        }
                 }
         }
 
