@@ -408,7 +408,7 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         this.cancelSale();
                         this.calculateTotalPurchase();
                 } else if (e.getSource() == btnPurchase) {
-                        String CID = "8";
+                        String CID = "12";
                         String UID = lblUID.getText();
                         String COUPON = "1";
                         String listItems = this.generateProductList();
@@ -430,7 +430,29 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         } while (value.equals("Err"));
 
                         if (value != null & value != "Err") {
-                                System.out.println("PROCEDE GUARDAR");
+                                if (Double.parseDouble(value) < Double.parseDouble(subtotal)) {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "¡The amount is greater than the income!", "Error",
+                                                        JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                        String a = this.addNewSale(listItems, cantIntems, subtotal, flag, UID, CID,
+                                                        COUPON);
+
+                                        if (a.equals("ok")) {
+                                                Double change = Math.abs(Double.parseDouble(subtotal)
+                                                                - Double.parseDouble(value));
+
+                                                JOptionPane.showMessageDialog(this,
+                                                                "Successfully\nYour remaining cash... $ " + change,
+                                                                "Successful", JOptionPane.INFORMATION_MESSAGE);
+
+                                                // clean table
+                                                int x = tModel.getRowCount() - 1;
+                                                for (int i = x; i >= 0; i--) {
+                                                        tModel.removeRow(i);
+                                                }
+                                        }
+                                }
                         }
                 }
         }
