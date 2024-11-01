@@ -17,3 +17,5 @@ Mientras tanto, los archivos de salida compilados se generarán en el `bin` carp
 
 > Si desea personalizar la estructura de carpetas, abra `.vscode/settings.json` y actualice las configuraciones relacionadas allí.
 
+## :package: Resultados
+
