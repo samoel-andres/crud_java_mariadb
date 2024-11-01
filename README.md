@@ -1,18 +1,19 @@
-## Getting Started
+<h1 align="left"> :shopping_cart: SISTEMA DE VENTAS </h1>
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+<br><img align="left" src="https://skillicons.dev/icons?i=vscode,java,mysql,github,git" height="37" alt="Tecnologias"><br><br>
 
-## Folder Structure
+## :pen: Acerca de este proyecto
 
-The workspace contains two folders by default, where:
+Este es un proyecto personal, consiste en un sistema de ventas en el que se pueden realizar registros de usuarios/empleados, clientes, provedores y por supuesto, registrar el stock de productos disponibles, además, esta pensado para que se puedan registrar pedidos. Todas las ventas que se realizan son registrados con la finalidad de usar los registros para un analisis posterior.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## :hammer: Estructura del proyecto
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Usando el patrón de arquitectura MVC (Modelo-Vista-Controlador) he construido la arquitectura de archivos y carpetas, esto permite que la aplicación sea escalable, facilita su mantenimiento y también permite que el contenido sea ordenado. El espacio de trabajo contiene dos carpetas de forma predeterminada, donde:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- `src`: la carpeta para mantener las fuentes
+- `lib`: la carpeta para mantener las dependencias
 
-## Dependency Management
+Mientras tanto, los archivos de salida compilados se generarán en el `bin` carpeta de forma predeterminada.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+> Si desea personalizar la estructura de carpetas, abra `.vscode/settings.json` y actualice las configuraciones relacionadas allí.
+
