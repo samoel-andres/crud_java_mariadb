@@ -19,3 +19,35 @@ Mientras tanto, los archivos de salida compilados se generarán en el `bin` carp
 
 ## :package: Resultados
 
+Vista inicial, se muestra la pantalla principal del sistema de ventas, lugar donde se generan las ventas y se accede a los diferentes apartados existentes.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/home.JPG" alt="Vista inicial">
+</p>
+
+Más opciones, se muestran otras opciones que dirigen a apartados especificos como agregar productos nuevos, proveedores, etc.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/more_options.JPG" alt="Más opciones">
+</p>
+
+Búsqueda de productos, es un apartado en el cual se puede consultar información acerca de todos los productos.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/search_product.JPG" alt="Consultar productos">
+</p>
+
+Esta interfaz permite visualizar una lista con todos los productos, además, se muestra un formulario en el que puede agregar productos nuevos o modificar detalles de existentes.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/view_stock.JPG" alt="Ver stock">
+</p>
+
+Parte de los detalles de un producto se asocian a un proveedor, los cuales se pueden consultar directamente desde la interfaz anterior.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/details_of_provider.JPG" alt="Detalles del proveedor">
+</p>
+
+## :pen: Conclusión
+
