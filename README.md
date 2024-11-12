@@ -51,3 +51,4 @@ Parte de los detalles de un producto se asocian a un proveedor, los cuales se pu
 
 ## :pen: Conclusión
 
+Este es un proyecto intererante dada la complejidad que puede llegar a tener la lógica detrás de un sistema de ventas. Al tiempo que he desarrollado el proyecto he podido practicar también mi conocimiento sobre MariaDB, el cual es una versión modificada de MySQL, por lo tanto, tienen varias similitudes y comandos que funcionan en ambos gestores.
