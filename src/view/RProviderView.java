@@ -177,7 +177,13 @@ public class RProviderView extends JDialog implements ActionListener, KeyListene
 
                         if (providerDetails.next()) {
                                 txtCompany.setText(this.providerDetails.getString("Company name"));
-                                cboPerson.setSelectedItem(this.providerDetails.getString("Person"));
+                                for (int index = 0; index < activity.length; index++) {
+                                        if (activity[index]
+                                                        .equalsIgnoreCase(this.providerDetails.getString("Person"))) {
+                                                cboPerson.setSelectedItem(activity[index]);
+                                                break;
+                                        }
+                                }
                                 txtStreet.setText(this.providerDetails.getString("Provider street"));
                                 txtExtNum.setText(this.providerDetails.getString("Provider exterior number"));
                                 txtIntNum.setText(this.providerDetails.getString("Provider interior number"));
