@@ -55,10 +55,18 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
         this.comingFrom = comingFrom;
         this.PID = PID;
 
+        // by default (table size and position)
+        int ty = height - height + space_between * 2 + 50;
+        int theight = height - space_between * 7 - 70;
+
         // define window height and vertical position
         if (this.comingFrom.equals("providers")) {
             this.height = this.height - 75;
             this.y = 70;
+
+            // change the values by default
+            ty = height - height + space_between;
+            theight = height - space_between * 4 - 60;
         }
 
         this.setBounds(50, this.y, this.width, this.height);
@@ -77,8 +85,7 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
                 (height - height + space_between), 150, 40);
 
         tScroll = new StyleComponents().ScrollPane((width - width + space_between),
-                (height - height + space_between * 2 + 40), (width - space_between * 3),
-                (height - space_between * 2 - 160));
+                ty, (width - space_between * 2 - 15), theight);
 
         btnReturn = new StyleComponents().Button("Back", (width - space_between * 2 - 150),
                 (height - space_between * 5), (width - width + 150), 40);
