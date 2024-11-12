@@ -88,7 +88,7 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
                 ty, (width - space_between * 2 - 15), theight);
 
         btnReturn = new StyleComponents().Button("Back", (width - space_between * 2 - 150),
-                (height - space_between * 5), (width - width + 150), 40);
+                (height - space_between * 5), (width - width + 154), 40);
 
         tProductsList = new StyleComponents().Table();
 
