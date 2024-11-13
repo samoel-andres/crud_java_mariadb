@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Image;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,8 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
             "Stock ID", "Provider name" };
     private String[] row = new String[columns.length];
 
+    private Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("../store.png"));
+
     private String comingFrom;
     private String PID;
 
@@ -50,6 +53,7 @@ public class ProductsView extends JDialog implements ActionListener, FocusListen
         // window configuration
         super(parent, title, modal);
         this.setLocationRelativeTo(parent);
+        setIconImage(icon);
 
         // initialize variables
         this.comingFrom = comingFrom;

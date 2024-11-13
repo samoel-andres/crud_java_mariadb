@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +46,8 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                         "Price by unit", "Subtotal" };
         private String[] row = new String[columns.length];
 
+        private Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("../store.png"));
+
         public HomeView() {
                 // window configuration
                 super("Store");
@@ -52,6 +55,7 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                 this.setLocationRelativeTo(null);
                 this.setResizable(false);
                 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                setIconImage(icon);
 
                 // create components
                 panel = new StyleComponents().Panel();
@@ -507,5 +511,4 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
         @Override
         public void focusLost(FocusEvent e) {
         }
-
 }
