@@ -455,6 +455,11 @@ public class HomeView extends JFrame implements ActionListener, FocusListener, K
                                                 for (int i = x; i >= 0; i--) {
                                                         tModel.removeRow(i);
                                                 }
+
+                                                this.btnCancelSale.setVisible(false);
+                                                this.btnPurchase.setVisible(false);
+                                                this.txtSubtotal.setText("$ -------");
+
                                         }
                                 }
                         }
