@@ -1,54 +1,55 @@
-<h1 align="left"> :shopping_cart: SISTEMA DE VENTAS </h1>
+# CRUD en Java con MariaDB
 
 <br><img align="left" src="https://skillicons.dev/icons?i=vscode,java,mysql,github,git" height="37" alt="Tecnologias"><br><br>
 
-## :pen: Acerca de este proyecto
+## Descripción
 
-Este es un proyecto personal, consiste en un sistema de ventas en el que se pueden realizar registros de usuarios/empleados, clientes, provedores y por supuesto, registrar el stock de productos disponibles, además, esta pensado para que se puedan registrar pedidos. Todas las ventas que se realizan son registrados con la finalidad de usar los registros para un analisis posterior.
+Este proyecto es una aplicación CRUD (Crear, Leer, Actualizar, Eliminar) desarrollada en Java que utiliza MariaDB como base de datos. Es ideal para comprender la interacción entre una aplicación Java y una base de datos relacional.
 
-## :hammer: Estructura del proyecto
+![Interfaz principal](evidence/home.JPG)
 
-Usando el patrón de arquitectura MVC (Modelo-Vista-Controlador) he construido la arquitectura de archivos y carpetas, esto permite que la aplicación sea escalable, facilita su mantenimiento y también permite que el contenido sea ordenado. El espacio de trabajo contiene dos carpetas de forma predeterminada, donde:
+## Características
 
-- `src`: la carpeta para mantener las fuentes
-- `lib`: la carpeta para mantener las dependencias
+- Gestión de registros.
+- Operaciones CRUD implementadas:
+    - Crear: Agregar nuevos registros a la base de datos.
+    - Leer: Visualizar registros existentes.
+    - Actualizar: Modificar registros existentes.
+    - Eliminar: Remover registros de la base de datos.
+- Conexión establecida con MariaDB a través de JDBC.
+- Interfaz sencilla y funcional para gestionar datos.
 
-Mientras tanto, los archivos de salida compilados se generarán en el `bin` carpeta de forma predeterminada.
+## Requisitos
 
-> Si desea personalizar la estructura de carpetas, abra `.vscode/settings.json` y actualice las configuraciones relacionadas allí.
+- **Java Development Kit (JDK)** 8 o superior.
+- **MariaDB** (o MySQL compatible) instalado y configurado.
+- **Maven** (opcional) para gestión de dependencias.
+- Un IDE como IntelliJ IDEA, Eclipse, o NetBeans (opcional).
 
-## :package: Resultados
+## Configuración
 
-Vista inicial, se muestra la pantalla principal del sistema de ventas, lugar donde se generan las ventas y se accede a los diferentes apartados existentes.
+1. **Clona este repositorio** en tu máquina local:
+  `git clone https://github.com/samoel-andres/crud_java_mariadb.git`
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/home.JPG" alt="Vista inicial">
-</p>
+3. Este proyecto requiere de una base de datos, para ello requieres crear una base de datos y conectarla con este proyecto.
 
-Más opciones, se muestran otras opciones que dirigen a apartados especificos como agregar productos nuevos, proveedores, etc.
+4. Ejectutar el proyecto:
+   - Compila y ejecuta el proyecto desde tu IDE.
+   - Alternativamente, usa la terminal:
+   ```bash
+   javac Main.java
+   java Main
+   ```
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/more_options.JPG" alt="Más opciones">
-</p>
+## Uso
 
-Búsqueda de productos, es un apartado en el cual se puede consultar información acerca de todos los productos.
+1. Al iniciar la aplicación puedes interactuar con cada interfaz del proyecto.
+2. Ingresa los datos necesarios en los formularios/campos respectivos.
+3. Los cambios se reflejarán en la base de datos en tiempo real.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/search_product.JPG" alt="Consultar productos">
-</p>
+## Tecnologías utilizadas
 
-Esta interfaz permite visualizar una lista con todos los productos, además, se muestra un formulario en el que puede agregar productos nuevos o modificar detalles de existentes.
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/view_stock.JPG" alt="Ver stock">
-</p>
-
-Parte de los detalles de un producto se asocian a un proveedor, los cuales se pueden consultar directamente desde la interfaz anterior.
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/samoel-andres/crud_java_mariadb/main/evidence/details_of_provider.JPG" alt="Detalles del proveedor">
-</p>
-
-## :pen: Conclusión
-
-Este es un proyecto intererante dada la complejidad que puede llegar a tener la lógica detrás de un sistema de ventas. Al tiempo que he desarrollado el proyecto he podido practicar también mi conocimiento sobre MariaDB, el cual es una versión modificada de MySQL, por lo tanto, tienen varias similitudes y comandos que funcionan en ambos gestores.
+- **Lenguaje**: Java
+- **Base de datos**: MariaDB
+- **Conector**: JDBC
+- **Gestor de dependencias**: Maven (si se usa)
